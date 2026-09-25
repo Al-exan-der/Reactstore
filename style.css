@@ -1,0 +1,768 @@
+/*
+Paleta de colores:
+
+    FONDOS
+    --color-fondo:       #0a0a0f  → Fondo base de toda la página
+    --color-superficie:  #12121a  → Fondo de cards, paneles, elementos sobre el fondo
+    --color-profundidad: #0d0d2b  → Nav, dropdowns, superficies con identidad propia
+
+    ACENTOS
+    --color-acento-calido: #ffa600 → Botones, acciones primarias, comprar, agregar al carrito
+    --color-acento-frio:   #00d4ff → Navegación, bordes activos, subrayados, input
+
+    TEXTO
+    --color-texto: #e0eeff → Todo el texto de la página (beige cálido, armoniza con el dorado)
+*/
+
+/* ============================================================
+   VARIABLES Y BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /*esto funciona como una plantilla, aca pones los colores y variables, las letras son las variables eso no lo tocamos, los colores son lo unico que cambia si vos cambias un color aca se cambiara el color en todos los lugares con esa variable*/
+    --color-fondo: #0a0a0f;
+    --color-superficie: #12121a;
+    --color-profundidad: #0d0d2b;
+    --color-acento-calido: #ffa600;
+    --color-acento-frio: #00d4ff;
+    --color-texto: #e0eeff;
+}
+.responsive{
+    display: flex;
+    flex-direction: column;
+}
+@media(min-width: 768px){
+ .responsive header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+}
+html,
+body {
+    background-color: var(--color-fondo);
+    padding: 0;
+    margin: 0;
+    color: var(--color-texto); /* Cambiado para que el texto sea legible */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/*aca le puse "html," por cosa de que firefox solo pinta lo que vos decis y no asume que queres pintar todo como chrome*/
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.form-login {
+    display: inline-block;
+
+}
+
+
+.form-login1 {
+    display: inline-block;
+    background-color: var(--color-acento-calido);
+    border: 2px solid var(--color-acento-calido);
+    padding: 8px;
+    border-radius: 48px;
+    cursor: pointer;
+    border-bottom: 2px solid var(--color-acento-calido);
+    box-shadow:
+        0 0 8px var(--color-acento-calido),
+        0 0 24px var(--color-acento-calido),
+        inset 0 0 8px rgba(255, 166, 0);
+    position: relative;
+}
+.form-login1:hover {
+    background-color: var(--color-acento-calido);
+    box-shadow:
+        0 0 15px var(--color-acento-calido),
+        0 0 35px var(--color-acento-calido),
+        0 0 60px var(--color-acento-calido),
+        inset 0 0 10px rgba(255, 166, 0);
+}
+.contador-carrito{
+    display: inline-block;
+    position: absolute;
+    top: -2px;
+    font-size: 17px;
+    font-weight: bold;
+    color: var(--color-acento-frio);
+    background: transparent;
+    padding: 0;
+    min-width: 0;
+    height: auto;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: 0 0 6px rgba(0, 212, 255, 0.22);
+    pointer-events: none;
+}
+
+/* Hover tenue: al pasar sobre el contenedor del carrito, el número gana un glow azul sutil */
+.form-login1:hover .contador-carrito {
+    text-shadow: 0 0 8px rgba(0,212,255,0.40), 0 0 18px rgba(0,212,255,0.18);
+}
+
+.contador-carrito {
+    transition: text-shadow 180ms ease-in-out;
+}
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 40px;
+}
+
+button {
+    background-color: var(--color-acento-calido);
+    border: 2px solid var(--color-acento-calido);
+    padding: 8px;
+    border-radius: 48px;
+    cursor: pointer;
+    border-bottom: 2px solid var(--color-acento-calido);
+    box-shadow:
+        0 0 8px var(--color-acento-calido),
+        0 0 24px var(--color-acento-calido),
+        inset 0 0 8px rgba(255, 166, 0);
+}
+
+button:hover {
+    background-color: var(--color-acento-calido);
+    box-shadow:
+        0 0 15px var(--color-acento-calido),
+        0 0 35px var(--color-acento-calido),
+        0 0 60px var(--color-acento-calido),
+        inset 0 0 10px rgba(255, 166, 0);
+}
+
+.menu-search {
+    width: 150px;
+    height: 48px;
+    padding-left: 16px;
+    background-color: var(--color-superficie);
+    border: 2px solid var(--color-acento-frio);
+    color: var(--color-texto);
+    border-radius: 24px;
+    outline: none;
+}
+
+.form-input {
+    width: 150px;
+    height: 48px;
+    padding-left: 16px;
+    background-color: var(--color-superficie);
+    border: 2px solid var(--color-acento-frio);
+    color: var(--color-texto);
+    border-radius: 24px;
+    outline: none;
+    margin-bottom: 12px;
+}
+
+/*esto es la animacion de parpadeo, el % representa el tiempo 0% es 0 segundos y 100% los 3 segundos, la opacity se explica solo que hace*/
+@keyframes parpadeo {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/*aca la animacion dura a lo largo de 3 segundos y "Infinite" significa que se repite indefinidamente*/
+.logo {
+    animation: parpadeo 3s infinite;
+}
+
+.footer {
+    text-align: center;
+    border-top: 1px solid var(--color-acento-frio);
+    background-color: var(--color-profundidad);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: var(--color-texto);
+}
+
+.footer a {
+    color: var(--color-acento-frio);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--color-acento-calido);
+    text-decoration: none;
+}
+
+/* ============================================================
+   NAVEGACION
+   ============================================================ */
+
+nav {
+    background-color: var(--color-profundidad);
+    position: relative;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-acento-frio);
+}
+
+#menud {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 8px;
+    border-top: 1px solid var(--color-acento-frio);
+}
+
+#menud li {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#menud li:last-child {
+    border-right: none;
+}
+
+#menud li>a {
+    display: inline-block;
+    padding: 12px 20px 8px 20px;
+    color: var(--color-acento-frio);
+    text-decoration: none;
+    white-space: nowrap;
+    text-shadow:
+        0 0 12px var(--color-acento-frio),
+        0 0 24px var(--color-acento-frio);
+}
+
+#menud li>a:hover {
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-acento-frio);
+    text-underline-offset: 5px;
+    color: var(--color-acento-frio);
+    text-shadow:
+        0 0 12px var(--color-acento-frio),
+        0 0 24px var(--color-acento-frio);
+}
+
+.dropdown {
+    z-index: 40000;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-profundidad);
+    width: 100%;
+}
+
+li.active .dropdown {
+    display: block;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--color-acento-frio);
+    text-decoration: none;
+    text-shadow:
+        0 0 3px var(--color-acento-frio),
+        0 0 12px var(--color-acento-frio);
+}
+
+.dropdown a:hover {
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-acento-frio);
+    text-underline-offset: 5px;
+    color: var(--color-acento-frio);
+    text-shadow:
+        0 0 3px var(--color-acento-frio),
+        0 0 12px var(--color-acento-frio);
+}
+
+.container-login {
+    color: var(--color-texto);
+    background-color: var(--color-superficie);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 350px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.container-updates {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-texto);
+    background-color: var(--color-superficie);
+    padding: 8px;
+    border-radius: 8px;
+    max-width: 1300px;
+    margin: 40px auto;
+    text-align: top;
+    font-size: x-large;
+}
+
+.text-novedades {
+    text-align: top;
+}
+
+.novedades-titulos {
+    margin-top: 18rem; 
+    margin-left: 5rem;
+}
+
+/* ============================================================
+   CONTENIDO
+   ============================================================ */
+
+.contenedor {
+    justify-content: space-evenly;
+    display: flex;
+    gap: 10px;
+    position: relative;
+    border-bottom: 2px solid var(--color-acento-frio);
+
+}
+
+.contenedor img {
+    width: 400px;
+    height: 230px;
+    ;
+}
+
+.buttonC1 {
+    position: absolute;
+    left: 0;
+    top: 35px;
+    height: 70%;
+    padding: 0px;
+    margin-left: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonC2 {
+    position: absolute;
+    right: 0;
+    top: 35px;
+    height: 70%;
+    padding: 0px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonC1 img {
+    height: 30px;
+    width: 30px;
+}
+
+.buttonC2 img {
+    height: 30px;
+    width: 30px;
+}
+
+.img-bajo {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    align-items: left;
+    align-items: center;
+}
+
+.img-secundario {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    flex: 1 1 300px;
+}
+
+.carrusel-grupo {
+    display: none;
+
+}
+
+.carrusel-grupo.activa {
+    display: flex;
+    gap: 10px;
+}
+
+.carrusel-grupo img {
+    flex: 1;
+    height: auto;
+    object-fit: cover;
+}
+
+.form-label {
+    color: var(--color-texto);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.volver {
+    display: inline-block;
+    background-color: var(--color-acento-calido);
+    border: 2px solid var(--color-acento-calido);
+    text-decoration: none;
+    color: var(--color-fondo);
+    padding: 12px;
+    margin: 20px;
+    border-radius: 48px;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 2px solid var(--color-acento-calido);
+    box-shadow:
+        0 0 8px var(--color-acento-calido),
+        0 0 24px var(--color-acento-calido),
+        inset 0 0 8px rgba(255, 166, 0);
+}
+
+.cerrar-sesion {
+    display: inline-block;
+    background-color: var(--color-acento-calido);
+    border: 2px solid var(--color-acento-calido);
+    text-decoration: none;
+    color: var(--color-fondo);
+    font-weight: bolder;
+    padding: 8px;
+    margin-top: 8px;
+    border-radius: 48px;
+    cursor: pointer;
+    border-bottom: 2px solid var(--color-acento-calido);
+    box-shadow:
+        0 0 8px var(--color-acento-calido),
+        0 0 24px var(--color-acento-calido),
+        inset 0 0 8px rgba(255, 166, 0);
+}
+
+
+.button-login {
+    display: inline-block;
+    background-color: var(--color-acento-calido);
+    border: 2px solid var(--color-acento-calido);
+    text-decoration: none;
+    color: var(--color-fondo);
+    font-weight: bolder;
+    padding: 8px;
+    margin-top: 8px;
+    border-radius: 48px;
+    cursor: pointer;
+    border-bottom: 2px solid var(--color-acento-calido);
+    box-shadow:
+        0 0 8px var(--color-acento-calido),
+        0 0 24px var(--color-acento-calido),
+        inset 0 0 8px rgba(255, 166, 0);
+}
+
+.button-login:hover {
+    background-color: var(--color-acento-calido);
+    box-shadow:
+        0 0 15px var(--color-acento-calido),
+        0 0 35px var(--color-acento-calido),
+        0 0 60px var(--color-acento-calido),
+        inset 0 0 10px rgba(255, 166, 0);
+}
+
+.volver:hover {
+    background-color: var(--color-acento-calido);
+    box-shadow:
+        0 0 15px var(--color-acento-calido),
+        0 0 35px var(--color-acento-calido),
+        0 0 60px var(--color-acento-calido),
+        inset 0 0 10px rgba(255, 166, 0);
+}
+
+/* ============================================================
+   TARJETAS DE JUEGO (seccion Novedades / listados)
+   ============================================================ */
+.game-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 14px 24px;
+    border-bottom: 2px solid var(--color-profundidad);
+    flex-wrap: wrap;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    flex: 1 1 280px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.grid {
+    color: white;
+}
+
+.game-card-badge {
+    background-color: var(--color-acento-calido);
+    color: var(--color-fondo);
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 48px;
+    width: fit-content;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@media (max-width: 440px){
+.game-item {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+}
+.card {
+    flex-direction: column;
+    align-items: center;
+}
+}
+
+
+.categoria-titulo {
+    color: var(--color-acento-frio);
+    padding: 24px 40px 12px;
+    font-size: 1.8rem;
+    text-shadow:
+        0 0 12px var(--color-acento-frio),
+        0 0 24px var(--color-acento-frio);
+    margin: 0;
+    border-bottom: 1px solid var(--color-acento-frio);
+}
+
+.plataformas {
+    display: flex;
+    gap: 8px;
+    font-size: 20px;
+}
+
+.generos-card {
+    color: var(--color-texto);
+    font-weight: bold;
+}
+
+.price-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    color: var(--color-fondo);
+    font-weight: bold;
+    font-size: 18px;
+    padding: 14px 26px;
+    border-radius: 16px;
+}
+
+.carrito {
+    background-color: var(--color-acento-calido);
+    border: 2px solid var(--color-acento-calido);
+    padding: 8px;
+    border-radius: 48px;
+    cursor: pointer;
+}
+
+.carrito:hover {
+    background-color: var(--color-acento-calido);
+    box-shadow:
+        0 0 15px var(--color-acento-calido),
+        0 0 35px var(--color-acento-calido),
+        0 0 60px var(--color-acento-calido),
+        inset 0 0 10px rgba(255, 166, 0);
+}
+
+.comprar-directo {
+    background-color: var(--color-acento-calido);
+    color: var(--color-fondo);
+    padding: 6px 12px;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+.precio {
+    background-color: var(--color-acento-calido);
+    color: var(--color-fondo);
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 48px;
+    border-bottom: 2px solid var(--color-acento-calido);
+    padding: 6px 12px;
+}
+
+.price-card span {
+    display: block;
+}
+
+.carrusel-grupo.activa {
+    display: flex;
+    gap: 10px;
+}
+
+.carrusel-grupo img {
+    flex: 1;
+    height: auto;
+    object-fit: cover;
+}
+
+.form-label {
+    color: var(--color-texto);
+    display: block;
+    margin-bottom: 8px;
+}
+
+
+
+.container {
+    flex: 1 1 420px;
+    width: 500px;
+    max-width: 100%;
+    display: flex;
+}
+
+.half {
+    background-color: var(--color-acento-calido);
+    color: var(--color-fondo);
+    flex: 1 1 420px;
+    border-bottom: 8px;
+    padding: 1px;
+    width: 500px;
+}
+
+.desplegable {
+    width: 500px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.desplegable summary {
+    cursor: pointer;
+    padding: 10px;
+    background-color: var(--color-acento-calido);
+    color: var(--color-fondo);
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.desplegable summary:hover {
+    background-color: var(--color-acento-calido);
+}
+
+.desplegable[open] summary {
+    border-bottom: 1px solid var(--color-acento-calido);
+}
+
+.desplegable .tables-container {
+    padding: 10px;
+}
+
+/*============================================================
+  carrito
+============================================================*/
+.html-carrito {
+    background-color: var(--color-fondo);
+    padding: 0;
+    margin: 0;
+    color: var(--color-fondo);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 20px;
+    background-color: var(--color-superficie);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--color-profundidad);
+}
+
+.carrito-h1 {
+    text-align: center;
+    color: var(--color-texto);
+}
+
+.carrito-contenedor {
+    display: flex;
+    color: var(--color-texto);
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.carrito-img {
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.carrito-nombre {
+    flex: 1;
+    color: var(--color-texto);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.carrito-total {
+    text-align: end;
+    font-size: 1.5rem;
+}
+
+.carrito-volver {
+
+    display: inline-block;
+    margin-top: auto;
+    align-self: center;
+    background-color: var(--color-acento-calido);
+    border: 2px solid var(--color-acento-calido);
+    text-decoration: none;
+    color: var(--color-fondo);
+    font-weight: bolder;
+    padding: 8px;
+    margin-top: 8px;
+    border-radius: 48px;
+    cursor: pointer;
+    border-bottom: 2px solid var(--color-acento-calido);
+    box-shadow:
+        0 0 8px var(--color-acento-calido),
+        0 0 24px var(--color-acento-calido),
+        inset 0 0 8px rgba(255, 166, 0);
+}
+
+.carrito-eliminar {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 16px;
+    box-sizing: border-box;
+}

@@ -1,0 +1,394 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <title>Todos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            color: #fff;
+            font-family: Arial
+        }
+
+        .controls {
+            padding: 10px;
+            background: #0a0a0f;
+            margin: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px
+        }
+
+        .game-card {
+            background: #161620;
+            padding: 10px
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ELIMINADO: segundo DOCTYPE y html que estaban aqui -->
+
+    <div class="menu">
+        <a href="index.php"><img src="img/Logo.png" alt="logo" width="250px" class="logo"></a>
+        <div class="menu-actions">
+            <button class="button1" type="button">
+                <img src="img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
+            </button>
+            <button class="button2" type="button">
+                <a href="login.html"><img src="img/editar.png" alt="usuario" width="20px"></a>
+            </button>
+            <input type="text" placeholder="Búsqueda" class="menu-search">
+        </div>
+    </div>
+    <nav>
+        <ul id="menud">
+            <li>
+                <a href="#" class="has-dropdown">Categorias</a>
+                <div class="dropdown">
+                    <a href="Accion.html">Accion</a>
+                    <a href="Aventura.html">Aventura</a>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="has-dropdown">Descubrir</a>
+                <div class="dropdown">
+                    <a href="Todos.html">Todos los Juegos</a>
+                </div>
+            </li>
+            <li>
+                <a href="updates.html">Novedades</a>
+            </li>
+        </ul>
+    </nav>
+    <center>
+        <h2 class="categoria-titulo">Todos los juegos</h2>
+        <div class=controls>
+            <select id=cat onchange=aplicar()>
+                <option>Todos</option>
+                <option>Accion</option>
+                <option>Aventura</option>
+                <option>RPG</option>
+                <option>Estrategia</option>
+                <option>Shooter</option>
+                <option>Indie</option>
+                <option>Deportes</option>
+                <option>Carreras</option>
+            </select>
+            <button onclick="filtrarLetra('TODAS')">Todas</button>
+            <button onclick="filtrarLetra('A')">A</button>
+            <button onclick="filtrarLetra('B')">B</button>
+            <button onclick="filtrarLetra('C')">C</button>
+            <button onclick="filtrarLetra('D')">D</button>
+            <button onclick="filtrarLetra('E')">E</button>
+            <button onclick="filtrarLetra('F')">F</button>
+            <button onclick="filtrarLetra('G')">G</button>
+            <button onclick="filtrarLetra('H')">H</button>
+            <button onclick="filtrarLetra('I')">I</button>
+            <button onclick="filtrarLetra('J')">J</button>
+            <button onclick="filtrarLetra('K')">K</button>
+            <button onclick="filtrarLetra('L')">L</button>
+            <button onclick="filtrarLetra('M')">M</button>
+            <button onclick="filtrarLetra('N')">N</button>
+            <button onclick="filtrarLetra('O')">O</button>
+            <button onclick="filtrarLetra('P')">P</button>
+            <button onclick="filtrarLetra('Q')">Q</button>
+            <button onclick="filtrarLetra('R')">R</button>
+            <button onclick="filtrarLetra('S')">S</button>
+            <button onclick="filtrarLetra('T')">T</button>
+            <button onclick="filtrarLetra('U')">U</button>
+            <button onclick="filtrarLetra('V')">V</button>
+            <button onclick="filtrarLetra('W')">W</button>
+            <button onclick="filtrarLetra('X')">X</button>
+            <button onclick="filtrarLetra('Y')">Y</button>
+            <button onclick="filtrarLetra('Z')">Z</button>
+        </div>
+    </center>
+
+    <div class=grid>
+        <div class="game-card" data-cat="Accion" data-letter="A">
+            <h3>Age of Empires II</h3>
+            <p>Accion</p>
+        </div>
+        <div class="game-card" data-cat="Aventura" data-letter="A">
+            <h3>Alan Wake</h3>
+            <p>Aventura</p>
+        </div>
+        <div class="game-card" data-cat="RPG" data-letter="A">
+            <h3>Among Us</h3>
+            <p>RPG</p>
+        </div>
+        <div class="game-card" data-cat="Estrategia" data-letter="A">
+            <h3>Assassins Creed</h3>
+            <p>Estrategia</p>
+        </div>
+        <div class="game-card" data-cat="Shooter" data-letter="B">
+            <h3>Batman Arkham City</h3>
+            <p>Shooter</p>
+        </div>
+        <div class="game-card" data-cat="Indie" data-letter="B">
+            <h3>BioShock</h3>
+            <p>Indie</p>
+        </div>
+        <div class="game-card" data-cat="Deportes" data-letter="B">
+            <h3>Borderlands 2</h3>
+            <p>Deportes</p>
+        </div>
+        <div class="game-card" data-cat="Carreras" data-letter="C">
+            <h3>Celeste</h3>
+            <p>Carreras</p>
+        </div>
+        <div class="game-card" data-cat="Accion" data-letter="C">
+            <h3>Control</h3>
+            <p>Accion</p>
+        </div>
+        <div class="game-card" data-cat="Aventura" data-letter="C">
+            <h3>Counter-Strike 2</h3>
+            <p>Aventura</p>
+        </div>
+        <div class="game-card" data-cat="RPG" data-letter="C">
+            <h3>Cuphead</h3>
+            <p>RPG</p>
+        </div>
+        <div class="game-card" data-cat="Estrategia" data-letter="C">
+            <h3>Cyberpunk 2077</h3>
+            <p>Estrategia</p>
+        </div>
+        <div class="game-card" data-cat="Shooter" data-letter="D">
+            <h3>Dark Souls</h3>
+            <p>Shooter</p>
+        </div>
+        <div class="game-card" data-cat="Indie" data-letter="D">
+            <h3>Dead Cells</h3>
+            <p>Indie</p>
+        </div>
+        <div class="game-card" data-cat="Deportes" data-letter="D">
+            <h3>Death Stranding</h3>
+            <p>Deportes</p>
+        </div>
+        <div class="game-card" data-cat="Carreras" data-letter="D">
+            <h3>Detroit Become Human</h3>
+            <p>Carreras</p>
+        </div>
+        <div class="game-card" data-cat="Accion" data-letter="D">
+            <h3>Diablo IV</h3>
+            <p>Accion</p>
+        </div>
+        <div class="game-card" data-cat="Aventura" data-letter="D">
+            <h3>Doom Eternal</h3>
+            <p>Aventura</p>
+        </div>
+        <div class="game-card" data-cat="RPG" data-letter="D">
+            <h3>Dying Light</h3>
+            <p>RPG</p>
+        </div>
+        <div class="game-card" data-cat="Estrategia" data-letter="E">
+            <h3>EA Sports FC 26</h3>
+            <p>Estrategia</p>
+        </div>
+        <div class="game-card" data-cat="Shooter" data-letter="E">
+            <h3>Elden Ring</h3>
+            <p>Shooter</p>
+        </div>
+        <div class="game-card" data-cat="Indie" data-letter="F">
+            <h3>Fall Guys</h3>
+            <p>Indie</p>
+        </div>
+        <div class="game-card" data-cat="Deportes" data-letter="F">
+            <h3>Far Cry 6</h3>
+            <p>Deportes</p>
+        </div>
+        <div class="game-card" data-cat="Carreras" data-letter="F">
+            <h3>FIFA 23</h3>
+            <p>Carreras</p>
+        </div>
+        <div class="game-card" data-cat="Accion" data-letter="F">
+            <h3>Forza Horizon 5</h3>
+            <p>Accion</p>
+        </div>
+        <div class="game-card" data-cat="Aventura" data-letter="G">
+            <h3>God of War</h3>
+            <p>Aventura</p>
+        </div>
+        <div class="game-card" data-cat="RPG" data-letter="G">
+            <h3>GTA V</h3>
+            <p>RPG</p>
+        </div>
+        <div class="game-card" data-cat="Estrategia" data-letter="H">
+            <h3>Half-Life 2</h3>
+            <p>Estrategia</p>
+        </div>
+        <div class="game-card" data-cat="Shooter" data-letter="H">
+            <h3>Hades</h3>
+            <p>Shooter</p>
+        </div>
+        <div class="game-card" data-cat="Indie" data-letter="H">
+            <h3>Hollow Knight</h3>
+            <p>Indie</p>
+        </div>
+        <div class="game-card" data-cat="Deportes" data-letter="I">
+            <h3>It Takes Two</h3>
+            <p>Deportes</p>
+        </div>
+        <div class="game-card" data-cat="Carreras" data-letter="J">
+            <h3>Journey</h3>
+            <p>Carreras</p>
+        </div>
+        <div class="game-card" data-cat="Accion" data-letter="L">
+            <h3>Left 4 Dead 2</h3>
+            <p>Accion</p>
+        </div>
+        <div class="game-card" data-cat="Aventura" data-letter="L">
+            <h3>League of Legends</h3>
+            <p>Aventura</p>
+        </div>
+        <div class="game-card" data-cat="RPG" data-letter="L">
+            <h3>Lies of P</h3>
+            <p>RPG</p>
+        </div>
+        <div class="game-card" data-cat="Estrategia" data-letter="M">
+            <h3>Minecraft</h3>
+            <p>Estrategia</p>
+        </div>
+        <div class="game-card" data-cat="Shooter" data-letter="M">
+            <h3>Mortal Kombat 1</h3>
+            <p>Shooter</p>
+        </div>
+        <div class="game-card" data-cat="Indie" data-letter="N">
+            <h3>Need for Speed Heat</h3>
+            <p>Indie</p>
+        </div>
+        <div class="game-card" data-cat="Deportes" data-letter="N">
+            <h3>No Mans Sky</h3>
+            <p>Deportes</p>
+        </div>
+        <div class="game-card" data-cat="Carreras" data-letter="O">
+            <h3>Ori and the Blind Forest</h3>
+            <p>Carreras</p>
+        </div>
+        <div class="game-card" data-cat="Accion" data-letter="O">
+            <h3>Overwatch 2</h3>
+            <p>Accion</p>
+        </div>
+        <div class="game-card" data-cat="Aventura" data-letter="P">
+            <h3>Palworld</h3>
+            <p>Aventura</p>
+        </div>
+        <div class="game-card" data-cat="RPG" data-letter="P">
+            <h3>Portal 2</h3>
+            <p>RPG</p>
+        </div>
+        <div class="game-card" data-cat="Estrategia" data-letter="P">
+            <h3>Prince of Persia The Lost Crown</h3>
+            <p>Estrategia</p>
+        </div>
+        <div class="game-card" data-cat="Shooter" data-letter="P">
+            <h3>PUBG</h3>
+            <p>Shooter</p>
+        </div>
+        <div class="game-card" data-cat="Indie" data-letter="R">
+            <h3>Red Dead Redemption 2</h3>
+            <p>Indie</p>
+        </div>
+        <div class="game-card" data-cat="Deportes" data-letter="R">
+            <h3>Resident Evil 4</h3>
+            <p>Deportes</p>
+        </div>
+        <div class="game-card" data-cat="Carreras" data-letter="R">
+            <h3>Rocket League</h3>
+            <p>Carreras</p>
+        </div>
+        <div class="game-card" data-cat="Accion" data-letter="S">
+            <h3>Sekiro</h3>
+            <p>Accion</p>
+        </div>
+        <div class="game-card" data-cat="Aventura" data-letter="S">
+            <h3>Silent Hill 2</h3>
+            <p>Aventura</p>
+        </div>
+        <div class="game-card" data-cat="RPG" data-letter="S">
+            <h3>Slay the Spire</h3>
+            <p>RPG</p>
+        </div>
+        <div class="game-card" data-cat="Estrategia" data-letter="S">
+            <h3>Stardew Valley</h3>
+            <p>Estrategia</p>
+        </div>
+        <div class="game-card" data-cat="Shooter" data-letter="S">
+            <h3>Street Fighter 6</h3>
+            <p>Shooter</p>
+        </div>
+        <div class="game-card" data-cat="Indie" data-letter="S">
+            <h3>Subnautica</h3>
+            <p>Indie</p>
+        </div>
+        <div class="game-card" data-cat="Deportes" data-letter="T">
+            <h3>Terraria</h3>
+            <p>Deportes</p>
+        </div>
+        <div class="game-card" data-cat="Carreras" data-letter="T">
+            <h3>The Last of Us Part I</h3>
+            <p>Carreras</p>
+        </div>
+        <div class="game-card" data-cat="Accion" data-letter="T">
+            <h3>The Witcher 3</h3>
+            <p>Accion</p>
+        </div>
+        <div class="game-card" data-cat="Aventura" data-letter="U">
+            <h3>Undertale</h3>
+            <p>Aventura</p>
+        </div>
+        <div class="game-card" data-cat="RPG" data-letter="V">
+            <h3>Valorant</h3>
+            <p>RPG</p>
+        </div>
+        <div class="game-card" data-cat="Shooter" data-letter="W">
+            <h3>World of Warcraft</h3>
+            <p>Shooter</p>
+        </div>
+        <div class="game-card" data-cat="Indie" data-letter="X">
+            <h3>XCOM 2</h3>
+            <p>Indie</p>
+        </div>
+        <div class="game-card" data-cat="Deportes" data-letter="Y">
+            <h3>Yakuza Like a Dragon</h3>
+            <p>Deportes</p>
+        </div>
+        <div class="game-card" data-cat="Carreras" data-letter="Z">
+            <h3>Zenless Zone Zero</h3>
+            <p>Carreras</p>
+        </div>
+    </div>
+    
+    <script>
+        let letra = "TODAS"; 
+        function filtrarLetra(l) {
+            letra = l; 
+            aplicar();
+        }
+        function aplicar() {
+            let c = cat.value; 
+            document.querySelectorAll(".game-card").forEach(g => g.style.display = ((c == "Todos" || g.dataset.cat == c) && (letra == "TODAS" || g.dataset.letter == letra)) ? "block" : "none");
+        }
+    </script>
+    <script src="script.js"></script>
+    <footer>
+        <div class="footer">
+            <img src="img/Logo.png" height="50px" width="200px">
+            <p>
+                Lucas Lafuente - Alexis Gomez
+            </p>
+            <p>
+                <a href="mailto:lucaslafuentehaeceg@gmail.com">lucaslafuentehaeceg@gmail.com</a> - <a
+                    href="mailto:alexgome7i@gmail.com">alexgome7i@gmail.com</a>
+            </p>
+
+        </div>
+    </footer>
+</body>
+
+</html>

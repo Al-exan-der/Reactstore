@@ -31,6 +31,10 @@ Paleta de colores:
     --color-acento-calido: #ffa600;
     --color-acento-frio: #00d4ff;
     --color-texto: #e0eeff;
+
+    /* Tipografias: Rajdhani para titulos/menu/botones/precios, Inter para los textos largos */
+    --fuente-titulos: 'Rajdhani', 'Arial Narrow', sans-serif;
+    --fuente-texto: 'Inter', system-ui, Arial, sans-serif;
 }
 .responsive{
     display: flex;
@@ -49,10 +53,40 @@ body {
     padding: 0;
     margin: 0;
     color: var(--color-texto); /* Cambiado para que el texto sea legible */
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: var(--fuente-texto);
 }
 
 /*aca le puse "html," por cosa de que firefox solo pinta lo que vos decis y no asume que queres pintar todo como chrome*/
+
+/* Tipografia de titulos: elementos que usan Rajdhani. Lo demas hereda Inter desde body.
+   Los botones, inputs y selects no heredan la fuente del body por defecto, por eso se declara aca. */
+h1, h2, h3,
+nav,
+button,
+summary,
+.game-card-badge,
+.precio,
+.categoria-titulo,
+.volver,
+.cerrar-sesion,
+.button-login,
+.carrito-volver,
+.comprar-directo,
+.carrito-nombre,
+.carrito-total {
+    font-family: var(--fuente-titulos);
+}
+
+nav,
+button {
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    font-family: inherit;
+}
 
 
 /* ============================================================
@@ -114,6 +148,8 @@ body {
 }
 .menu {
     display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     align-items: center;
     justify-content: space-between;
     padding: 8px 40px;
@@ -182,6 +218,8 @@ button:hover {
 /*aca la animacion dura a lo largo de 3 segundos y "Infinite" significa que se repite indefinidamente*/
 .logo {
     animation: parpadeo 3s infinite;
+    max-width: 100%;
+    height: auto;
 }
 
 .footer {
@@ -220,6 +258,7 @@ nav {
     margin: 0;
     list-style: none;
     width: 100%;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 8px;
     border-top: 1px solid var(--color-acento-frio);
@@ -378,7 +417,7 @@ li.active .dropdown {
 
 .img-bajo {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     justify-items: start;
     align-items: left;
     align-items: center;
@@ -400,10 +439,13 @@ li.active .dropdown {
 .carrusel-grupo.activa {
     display: flex;
     gap: 10px;
+    flex: 0 1 auto;
+    min-width: 0;
 }
 
 .carrusel-grupo img {
     flex: 1;
+    min-width: 0;
     height: auto;
     object-fit: cover;
 }
@@ -618,16 +660,6 @@ li.active .dropdown {
     display: block;
 }
 
-.carrusel-grupo.activa {
-    display: flex;
-    gap: 10px;
-}
-
-.carrusel-grupo img {
-    flex: 1;
-    height: auto;
-    object-fit: cover;
-}
 
 .form-label {
     color: var(--color-texto);
@@ -690,7 +722,7 @@ li.active .dropdown {
     padding: 0;
     margin: 0;
     color: var(--color-fondo);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: var(--fuente-texto);
 }
 
 .carrito-item {
@@ -765,4 +797,84 @@ li.active .dropdown {
     font-size: 1rem;
     padding: 16px;
     box-sizing: border-box;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   Solo se activan en pantallas angostas: en escritorio no cambian nada.
+   ============================================================ */
+
+/* Novedades: en pantallas chicas el texto y la imagen se apilan en vez de competir por el ancho */
+@media (max-width: 900px) {
+    .container-updates {
+        flex-direction: column;
+    }
+
+    .container-updates > .img-secundario,
+    .container-updates > .card {
+        flex: none;
+    }
+
+    .novedades-titulos {
+        margin: 0;
+    }
+
+    /* Carrito: la foto (400px fija) ya no entra en fila con nombre, precio y boton,
+       asi que pasa a ocupar su propio renglon */
+    .carrito-item {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .carrito-img {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+/* Descripcion desplegable: con 500px fijos la tarjeta necesita ~717px para convivir con el precio.
+   Por debajo de eso pasa a medir "hasta 500px" segun el espacio disponible. */
+@media (max-width: 720px) {
+    .desplegable,
+    .container,
+    .half {
+        width: 100%;
+    }
+
+    .desplegable {
+        max-width: 500px;
+    }
+
+    .card-info {
+        flex: 1 1 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu {
+        padding: 8px 16px;
+    }
+
+    /* Carrusel: 2 imagenes por fila en vez de 4 en una sola fila */
+    .carrusel-grupo.activa {
+        flex-wrap: wrap;
+    }
+
+    .carrusel-grupo img {
+        flex: 1 1 calc(50% - 5px);
+    }
+}
+
+@media (max-width: 480px) {
+    #menud li>a {
+        padding: 12px 10px 8px 10px;
+    }
+}
+
+/* En columna (tarjeta apilada) la info ocupa todo el ancho en vez de centrarse ajustada al texto */
+@media (max-width: 440px) {
+    .card-info {
+        align-self: stretch;
+    }
 }

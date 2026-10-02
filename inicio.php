@@ -8,7 +8,11 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario'] !== true) {
 ?>
 <!DOCTYPE html>
     <html lang="en">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         body{
             color: white;

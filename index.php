@@ -20,7 +20,11 @@ if (!isset($_SESSION['carrito'])) $_SESSION['carrito'] = [];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React Store</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
@@ -52,10 +56,10 @@ endif;
 ?>
     <header class="menu">
 
-        <a href="index.php"><img src="img/Logo.png" alt="logo" width="250px" class="logo"></a>
+        <a href="index.php"><img src="assets/img/Logo.png" alt="logo" width="250px" class="logo"></a>
         <div class="menu-actions">
             <a href="carrito.php" class="form-login1">
-                <img src="img/carro-de-la-compra.png" alt="carrito" width="20px">
+                <img src="assets/img/carro-de-la-compra.png" alt="carrito" width="20px">
                 <!-- CORREGIDO: $SESSION -> $_SESSION y removido el comentario mal puesto -->
                 <span class="contador-carrito">
                     <?= count($_SESSION['carrito']) ?>
@@ -63,7 +67,7 @@ endif;
             </a>
             <form class="form-login" action="login.html" method="get">
                 <button>
-                    <img src="img/editar.png" alt="usuario" width="20px">
+                    <img src="assets/img/editar.png" alt="usuario" width="20px">
                 </button>
             </form>
             <input type="text" placeholder="Búsqueda" class="menu-search">
@@ -95,31 +99,31 @@ endif;
     <section class="contenedor">
 
         <button class="buttonC1">
-            <img src="img/atras.png" width="30px" height="20px">
+            <img src="assets/img/atras.png" width="30px" height="20px">
         </button>
 
         <div class="carrusel-grupo activa">
-            <img src="img/requiem.jpg" class="img">
+            <img src="assets/img/requiem.jpg" class="img">
 
-            <img src="img/silksong.avif"  class="img">
+            <img src="assets/img/silksong.avif"  class="img">
 
-            <img src="img/ds.jpg" class="img">
+            <img src="assets/img/ds.jpg" class="img">
 
-            <img src="img/fh.jpg"  class="img">
+            <img src="assets/img/fh.jpg"  class="img">
         </div>
 
         <div class="carrusel-grupo">
-            <img src="img/freddy2.webp" class="img">
+            <img src="assets/img/freddy2.webp" class="img">
 
-            <img src="img/re2.jpg"  class="img">
+            <img src="assets/img/re2.jpg"  class="img">
 
-            <img src="img/Pragmata-en-Nintenduo-nth-hero-webp.webp" class="img">
+            <img src="assets/img/Pragmata-en-Nintenduo-nth-hero-webp.webp" class="img">
 
-            <img src="img/pi.jpg" class="img">
+            <img src="assets/img/pi.jpg" class="img">
         </div>
 
         <button class="buttonC2">
-            <img src="img/proximo.png" >
+            <img src="assets/img/proximo.png" >
         </button>
 
     </section>
@@ -131,11 +135,11 @@ endif;
                     <div class="card-info">
                         <span class="game-card-badge">Subnautica 2</span>
                         <div class="plataformas">
-                            <span class="plat-icon"><img src="img/windows.png" alt="Windows" 
+                            <span class="plat-icon"><img src="assets/img/windows.png" alt="Windows" 
                                     height="20px"></span>
-                            <span class="plat-icon"><img src="img/mac.png" alt="macOS" 
+                            <span class="plat-icon"><img src="assets/img/mac.png" alt="macOS" 
                                     height="20px"></span>
-                            <span class="plat-icon"><img src="img/linux.png" alt="Linux" width="20px"
+                            <span class="plat-icon"><img src="assets/img/linux.png" alt="Linux" width="20px"
                                     height="20px"></span>
                         </div>
                         <span class="generos-card">Supervivencia, Mundo Abierto, Aventura</span>
@@ -157,7 +161,7 @@ endif;
                         <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
                             <button class="carrito" type="submit">
-                                <img src="img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
+                                <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
                             </button>
                             <input type="hidden" name="nombre" value="Subnautica 2">
                             <input type="hidden" name="precio" value="45">
@@ -172,16 +176,16 @@ endif;
                 </article>
             </div>
             <div class="game-item">
-                <img src="img/skyrim.jpg"class="img-secundario">
+                <img src="assets/img/skyrim.jpg"class="img-secundario">
                 <article class="card">
                     <div class="card-info">
                         <span class="game-card-badge">Skyrim</span>
                         <div class="plataformas">
-                            <span class="plat-icon"><img src="img/windows.png" alt="Windows" width="20px"
+                            <span class="plat-icon"><img src="assets/img/windows.png" alt="Windows" width="20px"
                                     height="20px"></span>
-                            <span class="plat-icon"><img src="img/mac.png" alt="macOS" width="20px"
+                            <span class="plat-icon"><img src="assets/img/mac.png" alt="macOS" width="20px"
                                     height="20px"></span>
-                            <span class="plat-icon"><img src="img/linux.png" alt="Linux" width="20px"
+                            <span class="plat-icon"><img src="assets/img/linux.png" alt="Linux" width="20px"
                                     height="20px"></span>
                         </div>
                         <span class="generos-card">RPG, Mundo Abierto, Fantasia</span>
@@ -202,27 +206,27 @@ endif;
                         <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
                             <button class="carrito" type="submit">
-                                <img src="img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
+                                <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
                             </button>
                             <input type="hidden" name="nombre" value="Skyrim">
                             <input type="hidden" name="precio" value="45">
-                            <input type="hidden" name="imagen" value="img/skyrim.jpg">
+                            <input type="hidden" name="imagen" value="assets/img/skyrim.jpg">
                             <span class="precio">45$</span>
                         </form>
                     </div>
                 </article>
             </div>
             <div class="game-item">
-                <img src="img/reddead.webp" class="img-secundario">
+                <img src="assets/img/reddead.webp" class="img-secundario">
                 <article class="card">
                     <div class="card-info">
                         <span class="game-card-badge">Red Dead Redemption 2</span>
                         <div class="plataformas">
-                            <span class="plat-icon"><img src="img/windows.png" alt="Windows" width="20px"
+                            <span class="plat-icon"><img src="assets/img/windows.png" alt="Windows" width="20px"
                                     height="20px"></span>
-                            <span class="plat-icon"><img src="img/mac.png" alt="macOS" width="20px"
+                            <span class="plat-icon"><img src="assets/img/mac.png" alt="macOS" width="20px"
                                     height="20px"></span>
-                            <span class="plat-icon"><img src="img/linux.png" alt="Linux" width="20px"
+                            <span class="plat-icon"><img src="assets/img/linux.png" alt="Linux" width="20px"
                                     height="20px"></span>
                         </div>
                         <span class="generos-card">Accion, Aventura, Mundo Abierto</span>
@@ -242,11 +246,11 @@ endif;
                         <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
                             <button class="carrito" type="submit">
-                                <img src="img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
+                                <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
                             </button>
                             <input type="hidden" name="nombre" value="Red Dead Redemption 2">
                             <input type="hidden" name="precio" value="20">
-                            <input type="hidden" name="imagen" value="img/reddead.webp">
+                            <input type="hidden" name="imagen" value="assets/img/reddead.webp">
                             <span class="precio"><s>45$</s> 20$</span>
                         </form>
                     </div>
@@ -254,16 +258,16 @@ endif;
                 </article>
             </div>
             <div class="game-item">
-                <img src="img/ninesols.avif"class="img-secundario">
+                <img src="assets/img/ninesols.avif"class="img-secundario">
                 <article class="card">
                     <div class="card-info">
                         <span class="game-card-badge">Nine Sols</span>
                         <div class="plataformas">
-                            <span class="plat-icon"><img src="img/windows.png" alt="Windows" width="20px"
+                            <span class="plat-icon"><img src="assets/img/windows.png" alt="Windows" width="20px"
                                     height="20px"></span>
-                            <span class="plat-icon"><img src="img/mac.png" alt="macOS" width="20px"
+                            <span class="plat-icon"><img src="assets/img/mac.png" alt="macOS" width="20px"
                                     height="20px"></span>
-                            <span class="plat-icon"><img src="img/linux.png" alt="Linux" width="20px"
+                            <span class="plat-icon"><img src="assets/img/linux.png" alt="Linux" width="20px"
                                     height="20px"></span>
                         </div>
                         <span class="generos-card">Accion, Plataformas, Metroidvania</span>
@@ -286,11 +290,11 @@ endif;
                         <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
                             <button class="carrito" type="submit">
-                                <img src="img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
+                                <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
                             </button>
                             <input type="hidden" name="nombre" value="Nine Sols">
                             <input type="hidden" name="precio" value="35">
-                            <input type="hidden" name="imagen" value="img/ninesols.avif">
+                            <input type="hidden" name="imagen" value="assets/img/ninesols.avif">
                             <span class="precio">35$</span>
                         </form>
                     </div>
@@ -301,7 +305,7 @@ endif;
     </div>
     <footer>
         <div class="footer">
-            <img src="img/Logo.png" height="50px" width="200px">
+            <img src="assets/img/Logo.png" height="50px" width="200px">
             <p>
                 Lucas Lafuente - Alexis Gomez
             </p>
@@ -312,7 +316,7 @@ endif;
 
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
     </div>
 </body>
 

@@ -9,8 +9,14 @@ $carrito = $_SESSION['carrito'] ?? [];
 ?>
 <!DOCTYPE html>
 <html class = "html-carrito">
-<head><title>Carrito</title></head>
-<link rel="stylesheet" href="style.css">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<link rel="stylesheet" href="assets/css/style.css">
 <body >
 <div class="carrito-contenedor">
     <h1 class = "carrito-h1">Tu Carrito</h1>

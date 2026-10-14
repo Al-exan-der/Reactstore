@@ -61,12 +61,15 @@ endif;
             <a href="carrito.php" class="form-login1">
                 <img src="assets/img/carro-de-la-compra.png" alt="carrito" width="20px">
                 <!-- CORREGIDO: $SESSION -> $_SESSION y removido el comentario mal puesto -->
+                <?php if (count($_SESSION['carrito']) > 0): ?>
+                <!-- el globito solo se muestra si hay al menos un producto en el carrito -->
                 <span class="contador-carrito">
                     <?= count($_SESSION['carrito']) ?>
                 </span>
+                <?php endif; ?>
             </a>
             <form class="form-login" action="login.html" method="get">
-                <button>
+                <button class="btn-primario">
                     <img src="assets/img/editar.png" alt="usuario" width="20px">
                 </button>
             </form>
@@ -98,8 +101,8 @@ endif;
 
     <section class="contenedor">
 
-        <button class="buttonC1">
-            <img src="assets/img/atras.png" width="30px" height="20px">
+        <button class="buttonC1" type="button" aria-label="Anterior">
+            <img src="assets/img/atras.png" alt="">
         </button>
 
         <div class="carrusel-grupo activa">
@@ -122,9 +125,12 @@ endif;
             <img src="assets/img/pi.jpg" class="img">
         </div>
 
-        <button class="buttonC2">
-            <img src="assets/img/proximo.png" >
+        <button class="buttonC2" type="button" aria-label="Siguiente">
+            <img src="assets/img/proximo.png" alt="">
         </button>
+
+        <!-- circulitos de navegacion: los genera script.js segun la cantidad de grupos -->
+        <div class="carrusel-puntos"></div>
 
     </section>
     <div class="contenedor-bajo">
@@ -160,7 +166,7 @@ endif;
                     <div>
                         <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
-                            <button class="carrito" type="submit">
+                            <button class="btn-primario carrito" type="submit">
                                 <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
                             </button>
                             <input type="hidden" name="nombre" value="Subnautica 2">
@@ -205,7 +211,7 @@ endif;
                     <div>
                         <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
-                            <button class="carrito" type="submit">
+                            <button class="btn-primario carrito" type="submit">
                                 <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
                             </button>
                             <input type="hidden" name="nombre" value="Skyrim">
@@ -245,7 +251,7 @@ endif;
                     <div>
                         <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
-                            <button class="carrito" type="submit">
+                            <button class="btn-primario carrito" type="submit">
                                 <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
                             </button>
                             <input type="hidden" name="nombre" value="Red Dead Redemption 2">
@@ -289,7 +295,7 @@ endif;
                     <div>
                         <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
-                            <button class="carrito" type="submit">
+                            <button class="btn-primario carrito" type="submit">
                                 <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
                             </button>
                             <input type="hidden" name="nombre" value="Nine Sols">

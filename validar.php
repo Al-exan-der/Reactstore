@@ -64,28 +64,20 @@ mysqli_close($conexion);
         }
         a {
             display: inline-block;
-            background-color: var(--color-acento-calido);
-            border: 2px solid var(--color-acento-calido);
+            background-color: var(--color-acento-frio);
+            border: 2px solid var(--color-acento-frio);
             text-decoration: none;
             color: var(--color-fondo);
             padding: 8px;
             margin-top: 8px;
             border-radius: 48px;
             cursor: pointer;
-            border-bottom: 2px solid var(--color-acento-calido);
-            box-shadow:
-                0 0 8px var(--color-acento-calido),
-                0 0 24px var(--color-acento-calido),
-                inset 0 0 8px rgba(255, 166, 0);
-}
-    a:hover {
-            background-color: var(--color-acento-calido);
-            box-shadow:
-                0 0 15px var(--color-acento-calido),
-                0 0 35px var(--color-acento-calido),
-                0 0 60px var(--color-acento-calido),
-                inset 0 0 10px rgba(255, 166, 0);
-}
+            box-shadow: var(--glow-frio);
+        }
+        a:hover {
+            background-color: var(--color-acento-frio);
+            box-shadow: var(--glow-frio-hover);
+        }
 
     </style>
     

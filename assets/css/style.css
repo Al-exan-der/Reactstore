@@ -1,21 +1,79 @@
-/*
-Paleta de colores:
+/* ============================================================
+   INDICE
+   1.  Variables
+   2.  Reset y base
+   3.  Botones
+   4.  Formularios
+   5.  Header
+   6.  Navegacion
+   7.  Footer
+   8.  Novedades
+   9.  Carrusel
+   10. Tarjetas de juego
+   11. Descripcion desplegable
+   12. Carrito
+   13. Responsive
 
-    FONDOS
-    --color-fondo:       #0a0a0f  → Fondo base de toda la página
-    --color-superficie:  #12121a  → Fondo de cards, paneles, elementos sobre el fondo
-    --color-profundidad: #0d0d2b  → Nav, dropdowns, superficies con identidad propia
+   ORDEN DE PROPIEDADES (dentro de cada regla):
+   posicion -> display/flex/grid -> tamano -> espaciado (padding, margin)
+   -> overflow -> borde -> fondo -> color y tipografia -> texto
+   -> efectos (sombras, transition, animation) -> interaccion (cursor)
+   ============================================================ */
 
-    ACENTOS
-    --color-acento-calido: #ffa600 → Botones, acciones primarias, comprar, agregar al carrito
-    --color-acento-frio:   #00d4ff → Navegación, bordes activos, subrayados, input
-
-    TEXTO
-    --color-texto: #e0eeff → Todo el texto de la página (beige cálido, armoniza con el dorado)
-*/
 
 /* ============================================================
-   VARIABLES Y BASE
+   1. VARIABLES
+   ============================================================ */
+:root {
+   
+
+    /* Fondos */
+    --color-fondo: #0a0a0f;          /* Fondo base de toda la pagina */
+    --color-superficie: #12121a;     /* Cards, paneles y elementos sobre el fondo */
+    --color-profundidad: #0d0d2b;    /* Nav, dropdowns, footer: superficies con identidad propia */
+
+    /* Acentos */
+    --color-acento-calido: #ffa600;  /* SOLO lo importante: comprar, carrito y usuario del header, precios, enviar formularios */
+    --color-acento-frio: #00d4ff;    /* Todo lo demas: navegacion, volver, badges, desplegables, bordes, inputs */
+
+    /* Texto */
+    --color-texto: #e0eeff;          /* Todo el texto de la pagina (blanco azulado) */
+
+    /* Tipografias: Rajdhani para titulos/menu/botones/precios, Inter para los textos largos */
+    --fuente-titulos: 'Rajdhani', 'Arial Narrow', sans-serif;
+    --fuente-texto: 'Inter', system-ui, Arial, sans-serif;
+
+    /* Brillos de neon. Una variable puede guardar una lista completa de sombras,
+       asi el mismo efecto se escribe una sola vez. */
+    --glow-calido:
+        0 0 8px var(--color-acento-calido),
+        0 0 24px var(--color-acento-calido),
+        inset 0 0 8px var(--color-acento-calido);
+    --glow-calido-hover:
+        0 0 15px var(--color-acento-calido),
+        0 0 35px var(--color-acento-calido),
+        0 0 60px var(--color-acento-calido),
+        inset 0 0 10px var(--color-acento-calido);
+    --glow-frio:
+        0 0 8px var(--color-acento-frio),
+        0 0 24px var(--color-acento-frio),
+        inset 0 0 8px var(--color-acento-frio);
+    --glow-frio-hover:
+        0 0 15px var(--color-acento-frio),
+        0 0 35px var(--color-acento-frio),
+        0 0 60px var(--color-acento-frio),
+        inset 0 0 10px var(--color-acento-frio);
+    --glow-texto-frio:
+        0 0 12px var(--color-acento-frio),
+        0 0 24px var(--color-acento-frio);
+    --glow-texto-frio-suave:
+        0 0 3px var(--color-acento-frio),
+        0 0 12px var(--color-acento-frio);
+}
+
+
+/* ============================================================
+   2. RESET Y BASE
    ============================================================ */
 *,
 *::before,
@@ -23,40 +81,14 @@ Paleta de colores:
     box-sizing: border-box;
 }
 
-:root {
-    /*esto funciona como una plantilla, aca pones los colores y variables, las letras son las variables eso no lo tocamos, los colores son lo unico que cambia si vos cambias un color aca se cambiara el color en todos los lugares con esa variable*/
-    --color-fondo: #0a0a0f;
-    --color-superficie: #12121a;
-    --color-profundidad: #0d0d2b;
-    --color-acento-calido: #ffa600;
-    --color-acento-frio: #00d4ff;
-    --color-texto: #e0eeff;
-
-    /* Tipografias: Rajdhani para titulos/menu/botones/precios, Inter para los textos largos */
-    --fuente-titulos: 'Rajdhani', 'Arial Narrow', sans-serif;
-    --fuente-texto: 'Inter', system-ui, Arial, sans-serif;
-}
-.responsive{
-    display: flex;
-    flex-direction: column;
-}
-@media(min-width: 768px){
- .responsive header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-}
 html,
 body {
-    background-color: var(--color-fondo);
     padding: 0;
     margin: 0;
-    color: var(--color-texto); /* Cambiado para que el texto sea legible */
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
     font-family: var(--fuente-texto);
 }
-
-/*aca le puse "html," por cosa de que firefox solo pinta lo que vos decis y no asume que queres pintar todo como chrome*/
 
 /* Tipografia de titulos: elementos que usan Rajdhani. Lo demas hereda Inter desde body.
    Los botones, inputs y selects no heredan la fuente del body por defecto, por eso se declara aca. */
@@ -90,114 +122,167 @@ textarea {
 
 
 /* ============================================================
-   HEADER
+   3. BOTONES
    ============================================================ */
-.form-login {
-    display: inline-block;
 
-}
-
-
-.form-login1 {
-    display: inline-block;
-    background-color: var(--color-acento-calido);
-    border: 2px solid var(--color-acento-calido);
-    padding: 8px;
-    border-radius: 48px;
-    cursor: pointer;
-    border-bottom: 2px solid var(--color-acento-calido);
-    box-shadow:
-        0 0 8px var(--color-acento-calido),
-        0 0 24px var(--color-acento-calido),
-        inset 0 0 8px rgba(255, 166, 0);
-    position: relative;
-}
-.form-login1:hover {
-    background-color: var(--color-acento-calido);
-    box-shadow:
-        0 0 15px var(--color-acento-calido),
-        0 0 35px var(--color-acento-calido),
-        0 0 60px var(--color-acento-calido),
-        inset 0 0 10px rgba(255, 166, 0);
-}
-.contador-carrito{
-    display: inline-block;
-    position: absolute;
-    top: -2px;
-    font-size: 17px;
-    font-weight: bold;
-    color: var(--color-acento-frio);
-    background: transparent;
-    padding: 0;
-    min-width: 0;
-    height: auto;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    text-shadow: 0 0 6px rgba(0, 212, 255, 0.22);
-    pointer-events: none;
-}
-
-/* Hover tenue: al pasar sobre el contenedor del carrito, el número gana un glow azul sutil */
-.form-login1:hover .contador-carrito {
-    text-shadow: 0 0 8px rgba(0,212,255,0.40), 0 0 18px rgba(0,212,255,0.18);
-}
-
-.contador-carrito {
-    transition: text-shadow 180ms ease-in-out;
-}
-.menu {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 40px;
-}
 
 button {
-    background-color: var(--color-acento-calido);
-    border: 2px solid var(--color-acento-calido);
     padding: 8px;
+    border: 2px solid var(--color-acento-frio);
     border-radius: 48px;
+    background-color: var(--color-acento-frio);
+    box-shadow: var(--glow-frio);
     cursor: pointer;
-    border-bottom: 2px solid var(--color-acento-calido);
-    box-shadow:
-        0 0 8px var(--color-acento-calido),
-        0 0 24px var(--color-acento-calido),
-        inset 0 0 8px rgba(255, 166, 0);
 }
 
 button:hover {
+    background-color: var(--color-acento-frio);
+    box-shadow: var(--glow-frio-hover);
+}
+
+/* Base compartida del boton calido (naranja con glow) */
+/* Solo acciones importantes: carrito del header, boton de usuario, agregar al carrito y enviar formularios
+   (los <button> con .button-login) */
+.form-login1,
+.btn-primario,
+button.button-login {
+    padding: 8px;
+    border: 2px solid var(--color-acento-calido);
+    border-radius: 48px;
     background-color: var(--color-acento-calido);
-    box-shadow:
-        0 0 15px var(--color-acento-calido),
-        0 0 35px var(--color-acento-calido),
-        0 0 60px var(--color-acento-calido),
-        inset 0 0 10px rgba(255, 166, 0);
+    box-shadow: var(--glow-calido);
+    cursor: pointer;
 }
 
-.menu-search {
-    width: 150px;
-    height: 48px;
-    padding-left: 16px;
-    background-color: var(--color-superficie);
+/* Base compartida del boton frio (celeste con glow): navegacion y acciones secundarias.
+   a.button-login son los enlaces con aspecto de boton (¿no tiene cuenta?, ver productos, cerrar sesion) */
+.volver,
+.cerrar-sesion,
+a.button-login,
+.carrito-volver {
+    padding: 8px;
     border: 2px solid var(--color-acento-frio);
-    color: var(--color-texto);
-    border-radius: 24px;
-    outline: none;
+    border-radius: 48px;
+    background-color: var(--color-acento-frio);
+    box-shadow: var(--glow-frio);
+    cursor: pointer;
 }
 
+/* .carrito es igual pero SIN glow en reposo (solo lo tiene en :hover), como estaba antes */
+.carrito {
+    padding: 8px;
+    border: 2px solid var(--color-acento-calido);
+    border-radius: 48px;
+    background-color: var(--color-acento-calido);
+    cursor: pointer;
+}
+
+/* Hover compartido.
+   El background se repite a proposito: button:hover tiene especificidad (0,1,1) y le gana
+   a una clase suelta (0,1,0), asi que si el elemento es un <button> hay que restituirlo aca. */
+.form-login1:hover,
+.btn-primario:hover,
+button.button-login:hover,
+.carrito:hover {
+    background-color: var(--color-acento-calido);
+    box-shadow: var(--glow-calido-hover);
+}
+
+a.button-login:hover,
+.volver:hover {
+    background-color: var(--color-acento-frio);
+    box-shadow: var(--glow-frio-hover);
+}
+
+/* Los que funcionan como enlace/boton con texto oscuro */
+.volver,
+.cerrar-sesion,
+.button-login,
+.carrito-volver {
+    display: inline-block;
+    color: var(--color-fondo);
+    text-decoration: none;
+}
+
+/* Variantes (deben ir DESPUES de la base: misma especificidad, gana la ultima) */
+.volver {
+    padding: 12px;
+    margin: 20px;
+}
+
+.cerrar-sesion,
+.button-login,
+.carrito-volver {
+    margin-top: 8px;
+    font-weight: bolder;
+}
+
+.carrito-volver {
+    align-self: center;
+}
+
+.comprar-directo {
+    padding: 6px 12px;
+    border-radius: 24px;
+    background-color: var(--color-acento-calido);
+    color: var(--color-fondo);
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   4. FORMULARIOS
+   ============================================================ */
+.menu-search,
 .form-input {
     width: 150px;
     height: 48px;
     padding-left: 16px;
-    background-color: var(--color-superficie);
     border: 2px solid var(--color-acento-frio);
-    color: var(--color-texto);
     border-radius: 24px;
     outline: none;
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
+}
+
+.form-input {
     margin-bottom: 12px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-texto);
+}
+
+.container-login {
+    max-width: 350px;
+    padding: 20px;
+    margin: 40px auto;
+    border-radius: 8px;
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
+    text-align: center;
+}
+
+
+/* ============================================================
+   5. HEADER
+   ============================================================ */
+
+/* Contenedor de pagina. Su media query (min-width: 768px) esta en la seccion 13 */
+.responsive {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 40px;
 }
 
 /*esto es la animacion de parpadeo, el % representa el tiempo 0% es 0 segundos y 100% los 3 segundos, la opacity se explica solo que hace*/
@@ -217,51 +302,63 @@ button:hover {
 
 /*aca la animacion dura a lo largo de 3 segundos y "Infinite" significa que se repite indefinidamente*/
 .logo {
-    animation: parpadeo 3s infinite;
     max-width: 100%;
     height: auto;
+    animation: parpadeo 3s infinite;
 }
 
-.footer {
-    text-align: center;
-    border-top: 1px solid var(--color-acento-frio);
-    background-color: var(--color-profundidad);
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: var(--color-texto);
+.form-login {
+    display: inline-block;
 }
 
-.footer a {
+
+.form-login1 {
+    position: relative;
+    display: inline-block;
+}
+
+.contador-carrito {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border: 1px solid var(--color-acento-frio);
+    border-radius: 9px;
+    background-color: var(--color-fondo);
     color: var(--color-acento-frio);
-    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    box-shadow: 0 0 6px var(--color-acento-frio);
+    pointer-events: none;
 }
 
-.footer a:hover {
-    color: var(--color-acento-calido);
-    text-decoration: none;
-}
 
 /* ============================================================
-   NAVEGACION
+   6. NAVEGACION
    ============================================================ */
-
 nav {
-    background-color: var(--color-profundidad);
     position: relative;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--color-acento-frio);
+    background-color: var(--color-profundidad);
 }
 
 #menud {
     display: flex;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    width: 100%;
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 8px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
     border-top: 1px solid var(--color-acento-frio);
+    list-style: none;
 }
 
 #menud li {
@@ -271,39 +368,29 @@ nav {
     list-style: none;
 }
 
-#menud li:last-child {
-    border-right: none;
-}
-
 #menud li>a {
     display: inline-block;
     padding: 12px 20px 8px 20px;
     color: var(--color-acento-frio);
     text-decoration: none;
     white-space: nowrap;
-    text-shadow:
-        0 0 12px var(--color-acento-frio),
-        0 0 24px var(--color-acento-frio);
+    text-shadow: var(--glow-texto-frio);
 }
 
 #menud li>a:hover {
     text-decoration-line: underline;
     text-decoration-color: var(--color-acento-frio);
     text-underline-offset: 5px;
-    color: var(--color-acento-frio);
-    text-shadow:
-        0 0 12px var(--color-acento-frio),
-        0 0 24px var(--color-acento-frio);
 }
 
 .dropdown {
-    z-index: 40000;
-    display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: var(--color-profundidad);
+    z-index: 40000;
+    display: none;
     width: 100%;
+    background-color: var(--color-profundidad);
 }
 
 li.active .dropdown {
@@ -315,131 +402,177 @@ li.active .dropdown {
     padding: 10px 16px;
     color: var(--color-acento-frio);
     text-decoration: none;
-    text-shadow:
-        0 0 3px var(--color-acento-frio),
-        0 0 12px var(--color-acento-frio);
+    text-shadow: var(--glow-texto-frio-suave);
 }
 
 .dropdown a:hover {
     text-decoration-line: underline;
     text-decoration-color: var(--color-acento-frio);
     text-underline-offset: 5px;
-    color: var(--color-acento-frio);
-    text-shadow:
-        0 0 3px var(--color-acento-frio),
-        0 0 12px var(--color-acento-frio);
 }
 
-.container-login {
+
+/* ============================================================
+   7. FOOTER
+   ============================================================ */
+.footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid var(--color-acento-frio);
+    background-color: var(--color-profundidad);
     color: var(--color-texto);
-    background-color: var(--color-superficie);
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 350px;
-    margin: 40px auto;
     text-align: center;
 }
 
+.footer a {
+    color: var(--color-acento-frio);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-acento-frio);
+    text-underline-offset: 5px;
+}
+
+
+/* ============================================================
+   8. NOVEDADES
+   ============================================================ */
 .container-updates {
     display: flex;
     justify-content: space-between;
-    color: var(--color-texto);
-    background-color: var(--color-superficie);
-    padding: 8px;
-    border-radius: 8px;
     max-width: 1300px;
+    padding: 8px;
     margin: 40px auto;
-    text-align: top;
+    border-radius: 8px;
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
     font-size: x-large;
 }
 
-.text-novedades {
-    text-align: top;
-}
+/* TODO: .text-novedades tenia "text-align: top", que no existe (text-align es solo horizontal).
+   Si querias alinear en vertical, usar align-self / align-items / vertical-align. */
 
 .novedades-titulos {
-    margin-top: 18rem; 
+    margin-top: 18rem;
     margin-left: 5rem;
 }
 
-/* ============================================================
-   CONTENIDO
-   ============================================================ */
-
-.contenedor {
-    justify-content: space-evenly;
-    display: flex;
-    gap: 10px;
-    position: relative;
-    border-bottom: 2px solid var(--color-acento-frio);
-
-}
-
-.contenedor img {
-    width: 400px;
-    height: 230px;
-    ;
-}
-
-.buttonC1 {
-    position: absolute;
-    left: 0;
-    top: 35px;
-    height: 70%;
-    padding: 0px;
-    margin-left: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.buttonC2 {
-    position: absolute;
-    right: 0;
-    top: 35px;
-    height: 70%;
-    padding: 0px;
-    margin-right: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.buttonC1 img {
-    height: 30px;
-    width: 30px;
-}
-
-.buttonC2 img {
-    height: 30px;
-    width: 30px;
+.img-secundario {
+    flex: 1 1 300px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    padding: 10px;
 }
 
 .img-bajo {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     justify-items: start;
-    align-items: left;
     align-items: center;
 }
 
-.img-secundario {
-    padding: 10px;
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    flex: 1 1 300px;
+
+/* ============================================================
+   9. CARRUSEL
+   ============================================================ */
+.contenedor {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    padding-bottom: 36px;
+    border-bottom: 2px solid var(--color-acento-frio);
+}
+
+.contenedor img {
+    width: 400px;
+    height: 230px;
+}
+
+/* Flechas: botones redondos y chicos, centrados en vertical respecto de las imagenes.
+   El calc descuenta los 36px de padding-bottom del contenedor (ahi viven los circulitos).
+   Deben ir DESPUES de ".contenedor img": misma especificidad, gana la ultima */
+.buttonC1,
+.buttonC2 {
+    position: absolute;
+    top: calc((100% - 36px) / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.buttonC1 {
+    left: 12px;
+}
+
+.buttonC2 {
+    right: 12px;
+}
+
+.buttonC1 img,
+.buttonC2 img {
+    width: 16px;
+    height: 16px;
+}
+
+/* Circulitos de navegacion: uno por grupo, los crea script.js. El activo va relleno */
+.carrusel-puntos {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.carrusel-punto {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border: 2px solid var(--color-acento-frio);
+    border-radius: 50%;
+    background-color: transparent;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+/* Area de toque mas grande que el circulo visible (importante en celular) */
+.carrusel-punto::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+}
+
+/* Los :hover llevan clase + estado para ganarle a button:hover (0,1,1) */
+.carrusel-punto:hover {
+    background-color: color-mix(in srgb, var(--color-acento-frio) 40%, transparent);
+    box-shadow: none;
+}
+
+.carrusel-punto.activo,
+.carrusel-punto.activo:hover {
+    background-color: var(--color-acento-frio);
+    box-shadow: 0 0 8px var(--color-acento-frio);
 }
 
 .carrusel-grupo {
     display: none;
-
 }
 
 .carrusel-grupo.activa {
     display: flex;
-    gap: 10px;
     flex: 0 1 auto;
+    gap: 10px;
     min-width: 0;
 }
 
@@ -450,104 +583,26 @@ li.active .dropdown {
     object-fit: cover;
 }
 
-.form-label {
-    color: var(--color-texto);
-    display: block;
-    margin-bottom: 8px;
-}
-
-.volver {
-    display: inline-block;
-    background-color: var(--color-acento-calido);
-    border: 2px solid var(--color-acento-calido);
-    text-decoration: none;
-    color: var(--color-fondo);
-    padding: 12px;
-    margin: 20px;
-    border-radius: 48px;
-    align-items: center;
-    cursor: pointer;
-    border-bottom: 2px solid var(--color-acento-calido);
-    box-shadow:
-        0 0 8px var(--color-acento-calido),
-        0 0 24px var(--color-acento-calido),
-        inset 0 0 8px rgba(255, 166, 0);
-}
-
-.cerrar-sesion {
-    display: inline-block;
-    background-color: var(--color-acento-calido);
-    border: 2px solid var(--color-acento-calido);
-    text-decoration: none;
-    color: var(--color-fondo);
-    font-weight: bolder;
-    padding: 8px;
-    margin-top: 8px;
-    border-radius: 48px;
-    cursor: pointer;
-    border-bottom: 2px solid var(--color-acento-calido);
-    box-shadow:
-        0 0 8px var(--color-acento-calido),
-        0 0 24px var(--color-acento-calido),
-        inset 0 0 8px rgba(255, 166, 0);
-}
-
-
-.button-login {
-    display: inline-block;
-    background-color: var(--color-acento-calido);
-    border: 2px solid var(--color-acento-calido);
-    text-decoration: none;
-    color: var(--color-fondo);
-    font-weight: bolder;
-    padding: 8px;
-    margin-top: 8px;
-    border-radius: 48px;
-    cursor: pointer;
-    border-bottom: 2px solid var(--color-acento-calido);
-    box-shadow:
-        0 0 8px var(--color-acento-calido),
-        0 0 24px var(--color-acento-calido),
-        inset 0 0 8px rgba(255, 166, 0);
-}
-
-.button-login:hover {
-    background-color: var(--color-acento-calido);
-    box-shadow:
-        0 0 15px var(--color-acento-calido),
-        0 0 35px var(--color-acento-calido),
-        0 0 60px var(--color-acento-calido),
-        inset 0 0 10px rgba(255, 166, 0);
-}
-
-.volver:hover {
-    background-color: var(--color-acento-calido);
-    box-shadow:
-        0 0 15px var(--color-acento-calido),
-        0 0 35px var(--color-acento-calido),
-        0 0 60px var(--color-acento-calido),
-        inset 0 0 10px rgba(255, 166, 0);
-}
 
 /* ============================================================
-   TARJETAS DE JUEGO (seccion Novedades / listados)
+   10. TARJETAS DE JUEGO (seccion Novedades / listados)
    ============================================================ */
 .game-item {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 20px;
     width: 100%;
     padding: 14px 24px;
     border-bottom: 2px solid var(--color-profundidad);
-    flex-wrap: wrap;
 }
 
 .card {
     display: flex;
+    flex: 1 1 280px;
     justify-content: space-between;
     align-items: center;
     gap: 18px;
-    flex: 1 1 280px;
 }
 
 .card-info {
@@ -562,40 +617,26 @@ li.active .dropdown {
 }
 
 .game-card-badge {
-    background-color: var(--color-acento-calido);
+    width: fit-content;
+    min-width: 0;
+    max-width: 100%;
+    padding: 10px 18px;
+    overflow: hidden;
+    border-radius: 48px;
+    background-color: var(--color-acento-frio);
     color: var(--color-fondo);
     font-weight: bold;
-    padding: 10px 18px;
-    border-radius: 48px;
-    width: fit-content;
-    max-width: 100%;
-    min-width: 0;
-    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-@media (max-width: 440px){
-.game-item {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-}
-.card {
-    flex-direction: column;
-    align-items: center;
-}
-}
-
 
 .categoria-titulo {
-    color: var(--color-acento-frio);
     padding: 24px 40px 12px;
-    font-size: 1.8rem;
-    text-shadow:
-        0 0 12px var(--color-acento-frio),
-        0 0 24px var(--color-acento-frio);
     margin: 0;
     border-bottom: 1px solid var(--color-acento-frio);
+    color: var(--color-acento-frio);
+    font-size: 1.8rem;
+    text-shadow: var(--glow-texto-frio);
 }
 
 .plataformas {
@@ -614,115 +655,98 @@ li.active .dropdown {
     flex-direction: column;
     align-items: flex-end;
     gap: 8px;
-    color: var(--color-fondo);
-    font-weight: bold;
-    font-size: 18px;
     padding: 14px 26px;
     border-radius: 16px;
-}
-
-.carrito {
-    background-color: var(--color-acento-calido);
-    border: 2px solid var(--color-acento-calido);
-    padding: 8px;
-    border-radius: 48px;
-    cursor: pointer;
-}
-
-.carrito:hover {
-    background-color: var(--color-acento-calido);
-    box-shadow:
-        0 0 15px var(--color-acento-calido),
-        0 0 35px var(--color-acento-calido),
-        0 0 60px var(--color-acento-calido),
-        inset 0 0 10px rgba(255, 166, 0);
-}
-
-.comprar-directo {
-    background-color: var(--color-acento-calido);
     color: var(--color-fondo);
-    padding: 6px 12px;
-    border-radius: 24px;
-    cursor: pointer;
-}
-
-.precio {
-    background-color: var(--color-acento-calido);
-    color: var(--color-fondo);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    border-radius: 48px;
-    border-bottom: 2px solid var(--color-acento-calido);
-    padding: 6px 12px;
 }
 
 .price-card span {
     display: block;
 }
 
-
-.form-label {
-    color: var(--color-texto);
-    display: block;
-    margin-bottom: 8px;
+.precio {
+    padding: 6px 12px;
+    border-bottom: 2px solid var(--color-acento-calido);
+    border-radius: 48px;
+    background-color: var(--color-acento-calido);
+    color: var(--color-fondo);
+    font-size: 20px;
+    font-weight: bold;
 }
 
 
-
+/* ============================================================
+   11. DESCRIPCION DESPLEGABLE
+   ============================================================ */
 .container {
+    display: flex;
     flex: 1 1 420px;
     width: 500px;
     max-width: 100%;
-    display: flex;
 }
 
 .half {
-    background-color: var(--color-acento-calido);
-    color: var(--color-fondo);
     flex: 1 1 420px;
-    border-bottom: 8px;
-    padding: 1px;
     width: 500px;
+    padding: 1px;
+    background-color: var(--color-acento-frio);
+    color: var(--color-fondo);
 }
 
 .desplegable {
     width: 500px;
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
-    overflow: hidden;
 }
 
 .desplegable summary {
-    cursor: pointer;
     padding: 10px;
-    background-color: var(--color-acento-calido);
+    background-color: var(--color-acento-frio);
     color: var(--color-fondo);
-    font-weight: bold;
     font-size: 1.2rem;
+    font-weight: bold;
     text-align: center;
-}
-
-.desplegable summary:hover {
-    background-color: var(--color-acento-calido);
+    cursor: pointer;
 }
 
 .desplegable[open] summary {
-    border-bottom: 1px solid var(--color-acento-calido);
+    border-bottom: 1px solid var(--color-acento-frio);
 }
 
 .desplegable .tables-container {
     padding: 10px;
 }
 
-/*============================================================
-  carrito
-============================================================*/
+
+/* ============================================================
+   12. CARRITO
+   (el boton .carrito-volver esta en la seccion 3, Botones)
+   ============================================================ */
+
+/* OJO: color y background-color son iguales (texto invisible).
+   Solo se ve el texto porque .carrito-contenedor lo pisa con --color-texto. */
 .html-carrito {
-    background-color: var(--color-fondo);
     padding: 0;
     margin: 0;
+    background-color: var(--color-fondo);
     color: var(--color-fondo);
     font-family: var(--fuente-texto);
+}
+
+.carrito-contenedor {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--color-texto);
+}
+
+.carrito-h1 {
+    color: var(--color-texto);
+    text-align: center;
 }
 
 .carrito-item {
@@ -730,24 +754,10 @@ li.active .dropdown {
     align-items: center;
     gap: 20px;
     padding: 15px 20px;
-    background-color: var(--color-superficie);
-    border-radius: 12px;
     margin-bottom: 12px;
     border: 1px solid var(--color-profundidad);
-}
-
-.carrito-h1 {
-    text-align: center;
-    color: var(--color-texto);
-}
-
-.carrito-contenedor {
-    display: flex;
-    color: var(--color-texto);
-    flex-direction: column;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
+    border-radius: 12px;
+    background-color: var(--color-superficie);
 }
 
 .carrito-img {
@@ -765,43 +775,25 @@ li.active .dropdown {
 }
 
 .carrito-total {
-    text-align: end;
     font-size: 1.5rem;
-}
-
-.carrito-volver {
-
-    display: inline-block;
-    margin-top: auto;
-    align-self: center;
-    background-color: var(--color-acento-calido);
-    border: 2px solid var(--color-acento-calido);
-    text-decoration: none;
-    color: var(--color-fondo);
-    font-weight: bolder;
-    padding: 8px;
-    margin-top: 8px;
-    border-radius: 48px;
-    cursor: pointer;
-    border-bottom: 2px solid var(--color-acento-calido);
-    box-shadow:
-        0 0 8px var(--color-acento-calido),
-        0 0 24px var(--color-acento-calido),
-        inset 0 0 8px rgba(255, 166, 0);
+    text-align: end;
 }
 
 .carrito-eliminar {
     display: flex;
     flex-direction: column;
-    font-weight: bold;
-    font-size: 1rem;
     padding: 16px;
-    box-sizing: border-box;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 
 /* ============================================================
-   RESPONSIVE
+   13. RESPONSIVE
+   Estrategia: desktop-first. Las max-width van de MAYOR a MENOR
+   (900 -> 720 -> 600 -> 480 -> 440): en pantallas chicas se cumplen
+   varias a la vez y tiene que ganar la mas chica, o sea la ultima.
+   Van al final del archivo para pisar a las reglas base.
    Solo se activan en pantallas angostas: en escritorio no cambian nada.
    ============================================================ */
 
@@ -856,6 +848,26 @@ li.active .dropdown {
         padding: 8px 16px;
     }
 
+    .buttonC1,
+    .buttonC2 {
+        width: 30px;
+        height: 30px;
+    }
+
+    .buttonC1 {
+        left: 8px;
+    }
+
+    .buttonC2 {
+        right: 8px;
+    }
+
+    .buttonC1 img,
+    .buttonC2 img {
+        width: 14px;
+        height: 14px;
+    }
+
     /* Carrusel: 2 imagenes por fila en vez de 4 en una sola fila */
     .carrusel-grupo.activa {
         flex-wrap: wrap;
@@ -872,9 +884,29 @@ li.active .dropdown {
     }
 }
 
-/* En columna (tarjeta apilada) la info ocupa todo el ancho en vez de centrarse ajustada al texto */
 @media (max-width: 440px) {
+    .game-item {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* En columna (tarjeta apilada) la info ocupa todo el ancho en vez de centrarse ajustada al texto */
     .card-info {
         align-self: stretch;
+    }
+}
+
+/* Unica min-width del archivo: va al final para no mezclarse con las max-width */
+@media (min-width: 768px) {
+    .responsive header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 }

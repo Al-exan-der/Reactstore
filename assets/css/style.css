@@ -119,8 +119,38 @@ select,
 textarea {
     font-family: inherit;
 }
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-profundidad);
+    z-index: 1000;
+}
 
 
+.modal-carrito {
+    width: min(600px, 92vw);
+    background: var(--color-profundidad);
+    color: var(--color-texto);
+    border-top: 2px solid var(--color-acento-frio);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    font-family: var(--fuente-texto);
+}
+.modal-carrito {
+    animation: modal-aparecer 0.15s ease-out;
+}
+
+@keyframes modal-aparecer {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+@media (max-width: 480px) {
+    .modal-producto { flex-direction: column; }
+    .modal-producto img { width: 100%; max-width: none; }
+    .modal-acciones { flex-direction: column; }
+}
 /* ============================================================
    3. BOTONES
    ============================================================ */
@@ -229,7 +259,39 @@ a.button-login:hover,
     cursor: pointer;
 }
 
+.modal-acciones {
+    display: flex;
+    gap: 16px;
+    padding: 24px;
+}
 
+.modal-btn-secundario,
+.modal-btn-principal {
+    flex: 1;
+    padding: 14px;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--fuente-texto);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal-btn-secundario {
+    background: var(--color-superficie);
+    border: 1px solid var(--color-acento-frio);
+    color: var(--color-texto);
+}
+
+.modal-btn-principal {
+    background: transparent;
+    border: 1px solid var(--color-acento-calido);
+    color: var(--color-acento-calido);
+}
+
+.modal-btn-principal:hover {
+    box-shadow: var(--glow-calido);
+}
 /* ============================================================
    4. FORMULARIOS
    ============================================================ */
@@ -264,7 +326,31 @@ a.button-login:hover,
     color: var(--color-texto);
     text-align: center;
 }
+.modal-producto {
+    display: flex;
+    gap: 16px;
+    margin: 0 24px;
+    padding: 16px;
+    background: var(--color-superficie);
+}
 
+.modal-producto img {
+    width: 40%;
+    max-width: 200px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.modal-info h3 {
+    margin: 0 0 8px;
+    font-family: var(--fuente-titulos);
+}
+
+.modal-precio {
+    margin: 0;
+    color: var(--color-acento-calido);
+    font-weight: 600;
+}
 
 /* ============================================================
    5. HEADER
@@ -337,7 +423,29 @@ a.button-login:hover,
     box-shadow: 0 0 6px var(--color-acento-frio);
     pointer-events: none;
 }
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+}
 
+.modal-header h2 {
+    margin: 0;
+    font-family: var(--fuente-titulos);
+    font-size: 24px;
+}
+
+.modal-cerrar {
+    border: 0;
+    color: var(--color-texto);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-cerrar:hover {
+    color: var(--color-acento-frio);
+}
 
 /* ============================================================
    6. NAVEGACION
@@ -579,8 +687,11 @@ li.active .dropdown {
 .carrusel-grupo img {
     flex: 1;
     min-width: 0;
+    max-width: 400px;
     height: auto;
+    aspect-ratio: 16/ 9;
     object-fit: cover;
+
 }
 
 

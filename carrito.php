@@ -1,3 +1,4 @@
+
 <?php
 // Inicia la sesión para recuperar los datos del carrito que guardamos en $_SESSION.
 session_start();
@@ -18,6 +19,50 @@ $carrito = $_SESSION['carrito'] ?? [];
 </head>
 <link rel="stylesheet" href="assets/css/style.css">
 <body >
+     <header class="menu">
+
+        <a href="index.php"><img src="assets/img/Logo.png" alt="logo" width="250px" class="logo"></a>
+        <div class="menu-actions">
+            <a href="carrito.php" class="form-login1">
+                <img src="assets/img/carro-de-la-compra.png" alt="carrito" width="20px">
+                <!-- CORREGIDO: $SESSION -> $_SESSION y removido el comentario mal puesto -->
+                <?php if (count($_SESSION['carrito']) > 0): ?>
+                <!-- el globito solo se muestra si hay al menos un producto en el carrito -->
+                <span class="contador-carrito">
+                    <?= count($_SESSION['carrito']) ?>
+                </span>
+                <?php endif; ?>
+            </a>
+            <form class="form-login" action="login.html" method="get">
+                <button class="btn-primario">
+                    <img src="assets/img/editar.png" alt="usuario" width="20px">
+                </button>
+            </form>
+            <input type="text" placeholder="Búsqueda" class="menu-search">
+        </div>
+</header>
+ <nav>
+        <ul id="menud">
+            <li>
+                <a href="#" class="has-dropdown">Categorias</a>
+                <div class="dropdown">
+                    <a href="Accion.html">Accion</a>
+                    <a href="Aventura.html">Aventura</a>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="has-dropdown">Descubrir</a>
+                <div class="dropdown">
+                    <a href="Todos.html">Todos los Juegos</a>
+
+                </div>
+            </li>
+            <li>
+                <a href="updates.html">Novedades</a>
+            </li>
+        </ul>
+
+    </nav>
 <div class="carrito-contenedor">
     <h1 class = "carrito-h1">Tu Carrito</h1>
    
@@ -76,5 +121,20 @@ $carrito = $_SESSION['carrito'] ?? [];
     <!-- Enlace para volver al catálogo y seguir agregando productos -->
     <a href="index.php" class = "carrito-volver">Seguir comprando</a>
 </div>
+<footer>
+        <div class="footer">
+            <img src="assets/img/Logo.png" height="50px" width="200px">
+            <p>
+                Lucas Lafuente - Alexis Gomez
+            </p>
+            <p>
+                <a href="mailto:lucaslafuentehaeceg@gmail.com">lucaslafuentehaeceg@gmail.com</a> - <a
+                    href="mailto:alexgome7i@gmail.com">alexgome7i@gmail.com</a>
+            </p>
+
+        </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+
 </body>
 </html>

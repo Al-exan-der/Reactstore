@@ -322,6 +322,26 @@ endif;
 
         </div>
     </footer>
+    <div class = "modal-overlay" id = "modal-carrito" >
+   <div class="modal-overlay" id="modalCarrito" hidden>
+        <div class="modal-carrito" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+            <div class="modal-header">
+                <h2 id="modalTitulo">¡Añadido a tu carro!</h2>
+                <button type="button" class="modal-cerrar" id="modalCerrar" aria-label="Cerrar">&#10005;</button>
+            </div>
+            <div class="modal-producto">
+                <img id="modalImagen" src="" alt="">
+                <div class="modal-info">
+                    <h3 id="modalNombre"></h3>
+                    <p class="modal-precio" id="modalPrecio"></p>
+                </div>
+            </div>
+            <div class="modal-acciones">
+                <button type="button" class="modal-btn-secundario" id="modalSeguir">Seguir comprando</button>
+                <a href="carrito.php" class="modal-btn-principal" id="modalVerCarro">Ver mi carro (0)</a>
+            </div>
+        </div>
+    </div>
     <script src="assets/js/script.js"></script>
     </div>
 </body>

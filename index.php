@@ -136,7 +136,7 @@ endif;
     <div class="contenedor-bajo">
         <div class="img-bajo">
             <div class="game-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpBR7OSdTfNJrtT8NtEjurL5rKhRBv_BEAoVx-la6yeJxjF5eN4jzc68urXbZ_umxsBfmEHMwfkrg6t3Sgjfkzddhp6sk4Ip54YzCyhyI&s=10" class="img-secundario">
+                <img src="assets/img/subn.jpg" class="img-secundario">
                 <article class="card">
                     <div class="card-info">
                         <span class="game-card-badge">Subnautica 2</span>
@@ -172,7 +172,7 @@ endif;
                             <input type="hidden" name="nombre" value="Subnautica 2">
                             <input type="hidden" name="precio" value="45">
                             <input type="hidden" name="imagen"
-                                value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpBR7OSdTfNJrtT8NtEjurL5rKhRBv_BEAoVx-la6yeJxjF5eN4jzc68urXbZ_umxsBfmEHMwfkrg6t3Sgjfkzddhp6sk4Ip54YzCyhyI&s=10">
+                                value="assets/img/subn.jpg">
                             <span class="precio">45$</span>
                         </form>
                     </div>

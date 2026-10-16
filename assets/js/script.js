@@ -75,3 +75,122 @@ if (grupos.length > 0 && contenedorPuntos) {
 
     mostrar(0);
 }
+const modal = document.getElementById('modalCarrito');
+
+if (modal) {
+    let elementoQueAbrioModal = null;
+
+    function abrirModal() {
+        modal.hidden = false;
+        document.getElementById('modalCerrar').focus();
+    }
+
+    function cerrarModal() {
+        if (modal.hidden) {
+            return;
+        }
+        modal.hidden = true;
+        if (elementoQueAbrioModal) {
+            elementoQueAbrioModal.focus();
+        }
+    }
+
+    document.getElementById('modalCerrar').addEventListener('click', cerrarModal);
+    document.getElementById('modalSeguir').addEventListener('click', cerrarModal);
+
+    modal.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            cerrarModal();
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (modal.hidden) {
+            return;
+        }
+
+        if (event.key === 'Escape') {
+            cerrarModal();
+            return;
+        }
+
+        if (event.key === 'Tab') {
+            const elementosEnfocables = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+            const primero = elementosEnfocables[0];
+            const ultimo = elementosEnfocables[elementosEnfocables.length - 1];
+
+            if (!modal.contains(document.activeElement)) {
+                event.preventDefault();
+                (event.shiftKey ? ultimo : primero).focus();
+                return;
+            }
+            if (event.shiftKey && document.activeElement === primero) {
+                event.preventDefault();
+                ultimo.focus();
+            } else if (!event.shiftKey && document.activeElement === ultimo) {
+                event.preventDefault();
+                primero.focus();
+            }
+        }
+    });
+
+    function actualizarContador(cantidad) {
+        const enlace = document.querySelector('.form-login1');
+        let globito = enlace.querySelector('.contador-carrito');
+
+        if (!globito) {
+            globito = document.createElement('span');
+            globito.className = 'contador-carrito';
+            enlace.appendChild(globito);
+        }
+
+        globito.textContent = cantidad;
+    }
+    document.querySelectorAll('form[action="agregarcarrito.php"]').forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const botonEnviar = event.submitter || form.querySelector('button[type="submit"], input[type="submit"]');
+            const estabaDeshabilitado = botonEnviar ? botonEnviar.disabled : false;
+            elementoQueAbrioModal = botonEnviar || document.activeElement;
+            if (botonEnviar) {
+                botonEnviar.disabled = true;
+            }
+
+            let respuestaRecibida = false;
+            fetch('agregarcarrito.php', {
+                method: 'POST',
+                headers: { 'X-Requested-With': 'fetch' },
+                body: new FormData(form)
+            })
+                .then(function (respuesta) {
+                    respuestaRecibida = true;
+                    if (!respuesta.ok) {
+                        throw new Error('Error al agregar el producto: HTTP ' + respuesta.status);
+                    }
+                    return respuesta.json();
+                })
+                .then(function (producto) {
+                    actualizarContador(producto.cantidad);
+                    document.getElementById('modalImagen').src = producto.imagen;
+                    document.getElementById('modalImagen').alt = producto.nombre;
+                    document.getElementById('modalNombre').textContent = producto.nombre;
+                    document.getElementById('modalPrecio').textContent = producto.precio + '$';
+                    document.getElementById('modalVerCarro').textContent = 'Ver mi carro (' + producto.cantidad + ')';
+                    if (botonEnviar) {
+                        botonEnviar.disabled = estabaDeshabilitado;
+                    }
+                    abrirModal();
+                })
+                .catch(function (error) {
+                    if (botonEnviar) {
+                        botonEnviar.disabled = estabaDeshabilitado;
+                    }
+                    if (error instanceof TypeError && !respuestaRecibida) {
+                        form.submit();
+                    } else {
+                        console.error(error);
+                    }
+                });
+        });
+    });
+}

@@ -322,7 +322,6 @@ endif;
 
         </div>
     </footer>
-    <div class = "modal-overlay" id = "modal-carrito" >
    <div class="modal-overlay" id="modalCarrito" hidden>
         <div class="modal-carrito" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
             <div class="modal-header">

@@ -860,6 +860,10 @@ li.active .dropdown {
     text-align: center;
 }
 
+.carrito-vacio {
+    text-align: center;
+}
+
 .carrito-item {
     display: flex;
     align-items: center;

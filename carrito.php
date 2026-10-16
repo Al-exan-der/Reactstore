@@ -73,9 +73,7 @@ $carrito = $_SESSION['carrito'] ?? [];
     if (empty($carrito)): ?>
         <!-- Si está vacío, muestra este mensaje -->
 
-        <center>
-            <p class="carrito-vacio">Carrito vacío</p>
-        </center>
+        <p class="carrito-vacio">Carrito vacío</p>
     <?php else: ?>
         <!-- Si hay productos, entra en el bucle para mostrarlos -->
         <?php

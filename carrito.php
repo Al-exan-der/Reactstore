@@ -9,15 +9,16 @@ session_start();
 $carrito = $_SESSION['carrito'] ?? [];
 ?>
 <!DOCTYPE html>
-<html class = "html-carrito">
+<html lang="es" class = "html-carrito">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carrito</title>
+<title>Carrito | React Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-</head>
 <link rel="stylesheet" href="assets/css/style.css">
+</head>
 <body >
      <header class="menu">
 
@@ -25,11 +26,10 @@ $carrito = $_SESSION['carrito'] ?? [];
         <div class="menu-actions">
             <a href="carrito.php" class="form-login1">
                 <img src="assets/img/carro-de-la-compra.png" alt="carrito" width="20px">
-                <!-- CORREGIDO: $SESSION -> $_SESSION y removido el comentario mal puesto -->
-                <?php if (count($_SESSION['carrito']) > 0): ?>
+                <?php if (count($carrito) > 0): ?>
                 <!-- el globito solo se muestra si hay al menos un producto en el carrito -->
                 <span class="contador-carrito">
-                    <?= count($_SESSION['carrito']) ?>
+                    <?= count($carrito) ?>
                 </span>
                 <?php endif; ?>
             </a>
@@ -86,15 +86,15 @@ $carrito = $_SESSION['carrito'] ?? [];
             <div class="carrito-item">
                 <!-- Muestra la imagen del producto (src viene del dato guardado) -->
 
-                <img src="<?= $producto['imagen'] ?>" class="carrito-img">
+                <img src="<?= htmlspecialchars($producto['imagen'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy" class="carrito-img">
 
                 <!-- Muestra el nombre -->
 
-                <span class = "carrito-nombre"><?= $producto['nombre'] ?></span>
+                <span class = "carrito-nombre"><?= htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?></span>
 
                 <!-- Muestra el precio con el signo $ -->
 
-                <span class="carrito-total">$<?= $producto['precio'] ?></span>
+                <span class="carrito-total">$<?= htmlspecialchars($producto['precio'], ENT_QUOTES, 'UTF-8') ?></span>
 
                 <!-- Formulario que envía el índice a eliminarcarrito.php para borrar este producto -->
 
@@ -113,7 +113,7 @@ $carrito = $_SESSION['carrito'] ?? [];
         // Después del bucle, calcula y muestra el total de la compra.
         // array_column() extrae todos los 'precio' del carrito y array_sum() los suma.
         ?>
-        <strong class = "carrito-total">Total: $<?= array_sum(array_column($carrito, 'precio')) ?></strong>
+        <strong class = "carrito-total">Total: $<?= htmlspecialchars((string) array_sum(array_column($carrito, 'precio')), ENT_QUOTES, 'UTF-8') ?></strong>
     <?php endif; ?>
    
     <!-- Enlace para volver al catálogo y seguir agregando productos -->
@@ -121,7 +121,7 @@ $carrito = $_SESSION['carrito'] ?? [];
 </div>
 <footer>
         <div class="footer">
-            <img src="assets/img/Logo.png" height="50px" width="200px">
+            <img src="assets/img/Logo.png" alt="" height="50px" width="200px">
             <p>
                 Lucas Lafuente - Alexis Gomez
             </p>

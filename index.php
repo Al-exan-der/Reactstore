@@ -35,7 +35,6 @@ if ($nombre_usuario !=''):
 ?>
     <!-- //¿El usuario tiene un nombre guardado en la sesion -->
     <!-- //si nombre_usuario No esta vacio, significa que el usuario ya inicio sesion correctamente -->
-    <!-- CORREGIDO-->
 <span class="cerrar-sesion">
     🖐 <?php echo $nombre_usuario; ?>
 </span>
@@ -60,7 +59,6 @@ endif;
         <div class="menu-actions">
             <a href="carrito.php" class="form-login1">
                 <img src="assets/img/carro-de-la-compra.png" alt="carrito" width="20px">
-                <!-- CORREGIDO: $SESSION -> $_SESSION y removido el comentario mal puesto -->
                 <?php if (count($_SESSION['carrito']) > 0): ?>
                 <!-- el globito solo se muestra si hay al menos un producto en el carrito -->
                 <span class="contador-carrito">
@@ -106,23 +104,23 @@ endif;
         </button>
 
         <div class="carrusel-grupo activa">
-            <img src="assets/img/requiem.jpg" class="img">
+            <img src="assets/img/requiem.jpg" alt="A Plague Tale: Requiem" class="img">
 
-            <img src="assets/img/silksong.avif"  class="img">
+            <img src="assets/img/silksong.avif" alt="Hollow Knight: Silksong" class="img">
 
-            <img src="assets/img/ds.jpg" class="img">
+            <img src="assets/img/ds.jpg" alt="Dark Souls" class="img">
 
-            <img src="assets/img/fh.jpg"  class="img">
+            <img src="assets/img/fh.jpg" alt="Forza Horizon 4" class="img">
         </div>
 
         <div class="carrusel-grupo">
-            <img src="assets/img/freddy2.webp" class="img">
+            <img src="assets/img/freddy2.webp" alt="Five Nights at Freddy's: Security Breach" loading="lazy" class="img">
 
-            <img src="assets/img/re2.jpg"  class="img">
+            <img src="assets/img/re2.jpg" alt="Resident Evil 2" loading="lazy" class="img">
 
-            <img src="assets/img/Pragmata-en-Nintenduo-nth-hero-webp.webp" class="img">
+            <img src="assets/img/Pragmata-en-Nintenduo-nth-hero-webp.webp" alt="Pragmata" loading="lazy" class="img">
 
-            <img src="assets/img/pi.jpg" class="img">
+            <img src="assets/img/pi.jpg" alt="Mouse: P.I. For Hire" loading="lazy" class="img">
         </div>
 
         <button class="buttonC2" type="button" aria-label="Siguiente">
@@ -136,7 +134,7 @@ endif;
     <div class="contenedor-bajo">
         <div class="img-bajo">
             <div class="game-item">
-                <img src="assets/img/subn.jpg" class="img-secundario">
+                <img src="assets/img/subn.jpg" alt="Subnautica 2" loading="lazy" class="img-secundario">
                 <article class="card">
                     <div class="card-info">
                         <span class="game-card-badge">Subnautica 2</span>
@@ -164,7 +162,6 @@ endif;
                     </div>
 
                     <div>
-                        <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
                             <button class="btn-primario carrito" type="submit">
                                 <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
@@ -182,7 +179,7 @@ endif;
                 </article>
             </div>
             <div class="game-item">
-                <img src="assets/img/skyrim.jpg"class="img-secundario">
+                <img src="assets/img/skyrim.jpg" alt="Skyrim" loading="lazy" class="img-secundario">
                 <article class="card">
                     <div class="card-info">
                         <span class="game-card-badge">Skyrim</span>
@@ -209,7 +206,6 @@ endif;
                     </div>
 
                     <div>
-                        <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
                             <button class="btn-primario carrito" type="submit">
                                 <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
@@ -223,7 +219,7 @@ endif;
                 </article>
             </div>
             <div class="game-item">
-                <img src="assets/img/reddead.webp" class="img-secundario">
+                <img src="assets/img/reddead.webp" alt="Red Dead Redemption 2" loading="lazy" class="img-secundario">
                 <article class="card">
                     <div class="card-info">
                         <span class="game-card-badge">Red Dead Redemption 2</span>
@@ -249,7 +245,6 @@ endif;
                     </div>
 
                     <div>
-                        <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
                             <button class="btn-primario carrito" type="submit">
                                 <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
@@ -264,7 +259,7 @@ endif;
                 </article>
             </div>
             <div class="game-item">
-                <img src="assets/img/ninesols.avif"class="img-secundario">
+                <img src="assets/img/ninesols.avif" alt="Nine Sols" loading="lazy" class="img-secundario">
                 <article class="card">
                     <div class="card-info">
                         <span class="game-card-badge">Nine Sols</span>
@@ -293,7 +288,6 @@ endif;
                     </div>
 
                     <div>
-                        <!-- CORREGIDO: inputs con valores correctos -->
                         <form action="agregarcarrito.php" method="POST" class="price-card">
                             <button class="btn-primario carrito" type="submit">
                                 <img src="assets/img/carro-de-la-compra.png" alt="carro de la compra" width="20px">
@@ -311,7 +305,7 @@ endif;
     </div>
     <footer>
         <div class="footer">
-            <img src="assets/img/Logo.png" height="50px" width="200px">
+            <img src="assets/img/Logo.png" alt="" height="50px" width="200px">
             <p>
                 Lucas Lafuente - Alexis Gomez
             </p>
@@ -322,6 +316,7 @@ endif;
 
         </div>
     </footer>
+
    <div class="modal-overlay" id="modalCarrito" hidden>
         <div class="modal-carrito" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
             <div class="modal-header">

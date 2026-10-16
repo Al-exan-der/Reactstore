@@ -48,6 +48,7 @@
     --glow-calido:
         0 0 8px var(--color-acento-calido),
         0 0 24px var(--color-acento-calido),
+        0 0 0 transparent,
         inset 0 0 8px var(--color-acento-calido);
     --glow-calido-hover:
         0 0 15px var(--color-acento-calido),
@@ -57,6 +58,7 @@
     --glow-frio:
         0 0 8px var(--color-acento-frio),
         0 0 24px var(--color-acento-frio),
+        0 0 0 transparent,
         inset 0 0 8px var(--color-acento-frio);
     --glow-frio-hover:
         0 0 15px var(--color-acento-frio),
@@ -125,11 +127,13 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--color-profundidad);
+    background: color-mix(in srgb, var(--color-profundidad) 80%, transparent);
     z-index: 1000;
 }
 
-
+.modal-overlay[hidden] {
+    display: none;
+}
 .modal-carrito {
     width: min(600px, 92vw);
     background: var(--color-profundidad);
@@ -137,8 +141,6 @@ textarea {
     border-top: 2px solid var(--color-acento-frio);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
     font-family: var(--fuente-texto);
-}
-.modal-carrito {
     animation: modal-aparecer 0.15s ease-out;
 }
 
@@ -146,11 +148,7 @@ textarea {
     from { opacity: 0; transform: scale(0.95); }
     to   { opacity: 1; transform: scale(1); }
 }
-@media (max-width: 480px) {
-    .modal-producto { flex-direction: column; }
-    .modal-producto img { width: 100%; max-width: none; }
-    .modal-acciones { flex-direction: column; }
-}
+
 /* ============================================================
    3. BOTONES
    ============================================================ */
@@ -162,6 +160,7 @@ button {
     border-radius: 48px;
     background-color: var(--color-acento-frio);
     box-shadow: var(--glow-frio);
+    transition: box-shadow 0.2s, background-color 0.2s;
     cursor: pointer;
 }
 
@@ -181,6 +180,7 @@ button.button-login {
     border-radius: 48px;
     background-color: var(--color-acento-calido);
     box-shadow: var(--glow-calido);
+    transition: box-shadow 0.2s, background-color 0.2s;
     cursor: pointer;
 }
 
@@ -195,6 +195,7 @@ a.button-login,
     border-radius: 48px;
     background-color: var(--color-acento-frio);
     box-shadow: var(--glow-frio);
+    transition: box-shadow 0.2s, background-color 0.2s;
     cursor: pointer;
 }
 
@@ -204,12 +205,12 @@ a.button-login,
     border: 2px solid var(--color-acento-calido);
     border-radius: 48px;
     background-color: var(--color-acento-calido);
+    box-shadow: none;
+    transition: box-shadow 0.2s, background-color 0.2s;
     cursor: pointer;
 }
 
-/* Hover compartido.
-   El background se repite a proposito: button:hover tiene especificidad (0,1,1) y le gana
-   a una clase suelta (0,1,0), asi que si el elemento es un <button> hay que restituirlo aca. */
+
 .form-login1:hover,
 .btn-primario:hover,
 button.button-login:hover,
@@ -274,6 +275,7 @@ a.button-login:hover,
     text-decoration: none;
     font-family: var(--fuente-texto);
     font-size: 16px;
+    transition: box-shadow 0.2s, background-color 0.2s;
     cursor: pointer;
 }
 
@@ -281,17 +283,19 @@ a.button-login:hover,
     background: var(--color-superficie);
     border: 1px solid var(--color-acento-frio);
     color: var(--color-texto);
+    box-shadow: none;
 }
 
 .modal-btn-principal {
-    background: transparent;
     border: 1px solid var(--color-acento-calido);
     color: var(--color-acento-calido);
+    box-shadow: var(--glow-calido);
 }
 
 .modal-btn-principal:hover {
-    box-shadow: var(--glow-calido);
+    box-shadow: var(--glow-calido-hover);
 }
+
 /* ============================================================
    4. FORMULARIOS
    ============================================================ */
@@ -305,6 +309,16 @@ a.button-login:hover,
     outline: none;
     background-color: var(--color-superficie);
     color: var(--color-texto);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--color-acento-frio);
+    outline-offset: 3px;
+    box-shadow: var(--glow-frio-hover);
 }
 
 .form-input {
@@ -440,6 +454,7 @@ a.button-login:hover,
     border: 0;
     color: var(--color-texto);
     font-size: 20px;
+    box-shadow: none;
     cursor: pointer;
 }
 
@@ -482,7 +497,7 @@ nav {
     color: var(--color-acento-frio);
     text-decoration: none;
     white-space: nowrap;
-    text-shadow: var(--glow-texto-frio);
+    text-shadow: var(--glow-texto-frio-suave);
 }
 
 #menud li>a:hover {
@@ -997,6 +1012,9 @@ li.active .dropdown {
     #menud li>a {
         padding: 12px 10px 8px 10px;
     }
+    .modal-producto { flex-direction: column; }
+    .modal-producto img { width: 100%; max-width: none; }
+    .modal-acciones { flex-direction: column; }
 }
 
 @media (max-width: 440px) {
@@ -1023,5 +1041,17 @@ li.active .dropdown {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+
+    .modal-carrito {
+        animation: none !important;
     }
 }
